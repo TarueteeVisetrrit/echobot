@@ -10,7 +10,7 @@ const db = mysql.createConnection({
  password : 'root',
  databse  : 'CTS'
 });
-//connect
+//connect to db
 db.connect((err) =>{
   if(err){
     throw err;
