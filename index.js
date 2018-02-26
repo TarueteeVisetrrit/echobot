@@ -32,6 +32,13 @@ restService.listen('3306',() =>{
 });
 
 restService.post("/echo", function(req, res) {
+  var day = req.body.result.parameters.date;
+  var sql = 'SELECT course_name, time_start, time_finish FROM Class INNER JOIN Timetable WHERE Class.course_id = Timetable.course_id AND Timetable.course_day = ? ORDER by time_start;'
+  var speech = ' ';
+  con.query(sql, [day], function (err, result) {
+  if (err) throw err;
+  speech = console.log(result);
+});
   var speech =
     req.body.result &&
     req.body.result.parameters &&
