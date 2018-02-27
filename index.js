@@ -5,11 +5,7 @@ const bodyParser = require("body-parser");
 
 const restService = express();
 
-restService.use(
-  bodyParser.urlencoded({
-    extended: true
-  })
-);
+
 const mysql = require('mysql');
 //create connection Code doesn't works
 const db = mysql.createConnection({
@@ -25,6 +21,11 @@ db.connect((err) =>{
   }
   console.log('Mysql connected.....');
 }); 
+restService.use(
+  bodyParser.urlencoded({
+    extended: true
+  })
+);
 restService.use(bodyParser.json());
 
 restService.post("/echo", function(req, res) {
