@@ -4,21 +4,21 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const restService = express();
 
-const mysql = require('mysql');
+//const mysql = require('mysql');
 //create connection Code doesn't works
-const db = mysql.createConnection({
- host     : '161.200.80.25',
- user     : 'root',
- password : 'ej8025ej',
- database  : 'CTS'
-});
+//const db = mysql.createConnection({
+ //host     : '161.200.80.25',
+ //user     : 'root',
+ //password : 'ej8025ej',
+ //database  : 'CTS'
+//});
 //connect to db Code doesn't works
-db.connect((err) =>{
-  if(err){
-    throw err;
-  }
-  console.log('Mysql connected.....');
-}); 
+//db.connect((err) =>{
+  //if(err){
+    //throw err;
+  //}
+  //console.log('Mysql connected.....');
+//}); 
 const restService = express();
 
 restService.use(
@@ -29,9 +29,9 @@ restService.use(
 
 restService.use(bodyParser.json());
 // Code doesn't works
-restService.listen('3306',() =>{
-  console.log('Server started on port 3306');
-});
+//restService.listen('3306',() =>{
+  //console.log('Server started on port 3306');
+//});
 
 restService.post("/echo", function(req, res) {
   var speech =
