@@ -6,14 +6,14 @@ const bodyParser = require("body-parser");
 const restService = express();
 
 
-//const mysql = require('mysql');
+const mysql = require('mysql');
 //create connection Code doesn't works
-// const db = mysql.createConnection({
-//  host     : '161.200.80.25',
-//  user     : 'root',
-//  password : 'ej8025ej',
-//  database  : 'CTS'
-// });
+const db = mysql.createConnection({
+ host     : '161.200.80.25',
+ user     : 'root',
+ password : 'ej8025ej',
+ database  : 'CTS'
+});
 //connect to db Code doesn't works
 // db.connect((err) =>{
 //   if(err){
