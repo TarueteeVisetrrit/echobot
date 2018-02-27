@@ -10,7 +10,21 @@ restService.use(
     extended: true
   })
 );
-
+const mysql = require('mysql');
+//create connection Code doesn't works
+const db = mysql.createConnection({
+ host     : '161.200.80.25',
+ user     : 'root',
+ password : 'ej8025ej',
+ database  : 'CTS'
+});
+//connect to db Code doesn't works
+db.connect((err) =>{
+  if(err){
+    throw err;
+  }
+  console.log('Mysql connected.....');
+}); 
 restService.use(bodyParser.json());
 
 restService.post("/echo", function(req, res) {
