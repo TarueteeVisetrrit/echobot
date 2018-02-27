@@ -5,14 +5,14 @@ const bodyParser = require("body-parser");
 const restService = express();
 
 const mysql = require('mysql');
-//create connection 
+//create connection Code doesn't works
 const db = mysql.createConnection({
- host     : 'localhost',
+ host     : '161.200.80.25',
  user     : 'root',
- password : 'root',
+ password : 'ej0825ej',
  databse  : 'CTS'
 });
-//connect to db
+//connect to db Code doesn't works
 db.connect((err) =>{
   if(err){
     throw err;
@@ -28,7 +28,7 @@ restService.use(
 );
 
 restService.use(bodyParser.json());
-
+// Code doesn't works
 restService.listen('3306',() =>{
   console.log('Server started on port 3306');
 });
