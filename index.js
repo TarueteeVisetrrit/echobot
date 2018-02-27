@@ -9,7 +9,7 @@ const mysql = require('mysql');
 const db = mysql.createConnection({
  host     : '161.200.80.25',
  user     : 'root',
- password : 'ej0825ej',
+ password : 'ej8025ej',
  databse  : 'CTS'
 });
 //connect to db Code doesn't works
