@@ -9,10 +9,9 @@ const restService = express();
 var mysql = require('mysql');
 //create connection Code doesn't works
 var db = mysql.createConnection({
- host     : '161.200.80.25',
- user     : 'root',
- password : 'ej8025ej',
- database  : 'CTS'
+ host     : 'heroku_8d64b4cb3978d80',
+ user     : 'bc72622898452a',
+ password : '3244bd28',
 });
 
 db.connect();
