@@ -11,7 +11,7 @@ var mysql = require('mysql');
 var db = mysql.createConnection({
  host     : 'heroku_8d64b4cb3978d80',
  user     : 'bc72622898452a',
- password : '3244bd28',
+ password : '3244bd28'
 });
 
 db.connect();
