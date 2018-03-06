@@ -31,7 +31,7 @@ restService.use(
 );
 restService.use(bodyParser.json());
 
-restService.get('/',function(req,res){
+restService.get("/ ",function(req,res){
 	res.send('Hello world');
 });
 
