@@ -11,7 +11,8 @@ var mysql = require('mysql');
 var db = mysql.createConnection({
  host     : 'us-cdbr-iron-east-05.cleardb.net',
  user     : 'bc72622898452a',
- password : '3244bd28'
+ password : '3244bd28',
+ database: 'heroku_8d64b4cb3978d80'
 });
 
 db.connect();
@@ -46,6 +47,6 @@ restService.post("/echo", function(req, res) {
 
 
 
-restService.listen(process.env.PORT || 8000, function() {
+restService.listen(process.env.PORT || 3306, function() {
   console.log("Server up and listening");
 });
