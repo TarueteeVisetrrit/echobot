@@ -31,6 +31,10 @@ restService.use(
 );
 restService.use(bodyParser.json());
 
+restService.get('/',function(req,res){
+	res.send('Hello world')
+});
+
 restService.post("/echo", function(req, res) {
   var speech =
     req.body.result &&
