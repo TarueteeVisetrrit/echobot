@@ -6,16 +6,16 @@ const bodyParser = require("body-parser");
 const restService = express();
 
 
-var mysql = require('mysql');
-//create connection Code doesn't works
-var db = mysql.createConnection({
- host     : 'us-cdbr-iron-east-05.cleardb.net',
- user     : 'bc72622898452a',
- password : '3244bd28',
- database: 'heroku_8d64b4cb3978d80'
-});
-
-db.connect();
+// var mysql = require('mysql');
+// //create connection Code doesn't works
+// var db = mysql.createConnection({
+//  host     : 'us-cdbr-iron-east-05.cleardb.net',
+//  user     : 'bc72622898452a',
+//  password : '3244bd28',
+//  database: 'heroku_8d64b4cb3978d80'
+// });
+// 
+// db.connect();
 
 //connect to db Code doesn't works
 // db.connect((err) =>{
