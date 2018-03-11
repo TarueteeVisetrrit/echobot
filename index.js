@@ -18,7 +18,12 @@ var db = mysql.createConnection({
 //db.connect();
 
 //connect to db Code doesn't works
- 
+db.connect((err) =>{
+  if(err){
+    throw err;
+  }
+  console.log('Mysql connected.....');
+}); 
 restService.use(
   bodyParser.urlencoded({
     extended: true
@@ -28,12 +33,6 @@ restService.use(bodyParser.json());
 
 restService.get("/hello",function(req,res){
 	res.send('Hello world');
-	db.connect((err) =>{
-  if(err){
-    throw err;
-  }
-  console.log('Mysql connected.....');
-});
 });
 
 restService.post("/echo", function(req, res) {
