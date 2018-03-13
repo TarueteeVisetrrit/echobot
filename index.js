@@ -1,12 +1,13 @@
 "use strict";
 
 const express = require("express");
+const mysql = require('mysql');
 const bodyParser = require("body-parser");
 
 const restService = express();
 
 
-const mysql = require("mysql");
+
 //create connection Code doesn't works
 // var db = mysql.createConnection({
 //  host     : 'us-cdbr-iron-east-05.cleardb.net',
