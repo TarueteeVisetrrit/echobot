@@ -61,7 +61,7 @@ restService.get("/hello",function(req,res){
             console.log('error: ', err);
             throw err;
         }
-        response.send(['Hello World!!!! HOLA MUNDO!!!!', rows]);
+        res.send(['Hello world', rows]);
     });
 	res.send('Hello world');
 });
