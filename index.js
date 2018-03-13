@@ -8,22 +8,22 @@ const restService = express();
 
 var mysql = require('mysql');
 //create connection Code doesn't works
-var db = mysql.createConnection({
- host     : 'us-cdbr-iron-east-05.cleardb.net',
- user     : 'bc72622898452a',
- password : '3244bd28',
- database: 'heroku_8d64b4cb3978d80'
-});
+// var db = mysql.createConnection({
+//  host     : 'us-cdbr-iron-east-05.cleardb.net',
+//  user     : 'bc72622898452a',
+//  password : '3244bd28',
+//  database: 'heroku_8d64b4cb3978d80'
+// });
 
 //db.connect();
 
 //connect to db Code doesn't works
-db.connect((err) =>{
-  if(err){
-    throw err;
-  }
-  console.log('Mysql connected.....');
-}); 
+// db.connect((err) =>{
+//   if(err){
+//     throw err;
+//   }
+//   console.log('Mysql connected.....');
+// }); 
 restService.use(
   bodyParser.urlencoded({
     extended: true
