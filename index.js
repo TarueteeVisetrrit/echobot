@@ -56,6 +56,13 @@ restService.use(
 restService.use(bodyParser.json());
 
 restService.get("/hello",function(req,res){
+ connection.query('SELECT * from trainee', function(err, rows, fields) {
+        if (err) {
+            console.log('error: ', err);
+            throw err;
+        }
+        response.send(['Hello World!!!! HOLA MUNDO!!!!', rows]);
+    });
 	res.send('Hello world');
 });
 
