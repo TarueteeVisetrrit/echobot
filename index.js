@@ -1,11 +1,11 @@
 "use strict";
 
 const express = require("express");
-var mysql = require('mysql');
 const bodyParser = require("body-parser");
 const restService = express();
 
 
+var mysql = require('mysql');
 
 //create connection Code doesn't works
 var db_config = {
