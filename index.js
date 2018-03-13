@@ -6,7 +6,7 @@ const bodyParser = require("body-parser");
 const restService = express();
 
 
-var mysql = require('mysql');
+//var mysql = require('mysql');
 //create connection Code doesn't works
 // var db = mysql.createConnection({
 //  host     : 'us-cdbr-iron-east-05.cleardb.net',
