@@ -32,7 +32,7 @@ function handleDisconnect() {
     connection.connect(function(err) {              	// The server is either down
         if (err) {                                     // or restarting (takes a while sometimes).
             console.log('2. error when connecting to db:', err);
-            setTimeout(handleDisconnect, 1000); // We introduce a delay before attempting to reconnect,
+            setTimeout(handleDisconnect, 3000); // We introduce a delay before attempting to reconnect,
         }                                     	// to avoid a hot loop, and to allow our node script to
     });                                     	// process asynchronous requests in the meantime.
     											// If you're also serving http, display a 503 error.
