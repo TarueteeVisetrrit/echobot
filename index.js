@@ -63,7 +63,7 @@ restService.get("/hello",function(req,res){
         }
         res.send(['Hello world', rows]);
     });
-	res.send('Hello world');
+//	res.send('Hello world');
 });
 
 restService.post("/echo", function(req, res) {
