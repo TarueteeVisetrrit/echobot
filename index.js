@@ -71,7 +71,7 @@ restService.post("/bot",function(req,res)){
   var input = req.body.result.parameters &&
     req.body.result.parameters.DBlink
       ? req.body.result.parameters.DBlink
-      : "Seems like some problem. Speak again.";;
+      : "Seems like some problem. Speak again.";
   var speech = " ";
   switch(input){
     case "Timetable":
