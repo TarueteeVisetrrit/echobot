@@ -67,7 +67,7 @@ restService.get("/hello",function(req,res){
 //	res.send('Hello world');
 });
 
-restService.post("/bot",function(req,res)){
+restService.post("/bot", function(req,res){
   var input = req.body.result.parameters &&
     req.body.result.parameters.DBlink
       ? req.body.result.parameters.DBlink
@@ -91,7 +91,7 @@ restService.post("/bot",function(req,res)){
     displayText: speech,
     source: "webhook-echo-sample"
   });
-}
+});
 
 restService.post("/echo", function(req, res) {
   var speech =
