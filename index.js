@@ -67,28 +67,29 @@ restService.get("/hello",function(req,res){
 //	res.send('Hello world');
 });
 
-restService.post("/bot",function(req,res)){
-  var input = req. body.result.parameter;
-  var speech = " ";
-  switch(input){
-    case "Timetable":
-      speech = "Timetable case";
-      break;
-    case "My progress":
-      speech = "My progress case";
-      break;
-    case "My task":
-      speech = "My task case";
-      break;
-    default:
-      speech = "Type again";
-  } 
-  return res.json({
-    speech: speech,
-    displayText: speech,
-    source: "webhook-echo-sample"
-  });
-}
+// restService.post("/bot",function(req,res)){
+//   var input = req. body.result.parameter;
+//   var speech = " ";
+//   switch(input){
+//     case "Timetable":
+//       speech = "Timetable case";
+//       break;
+//     case "My progress":
+//       speech = "My progress case";
+//       break;
+//     case "My task":
+//       speech = "My task case";
+//       break;
+//     default:
+//       speech = "Type again";
+//   } 
+//   return res.json({
+//     speech: speech,
+//     displayText: speech,
+//     source: "webhook-echo-sample"
+//   });
+// }
+
 restService.post("/echo", function(req, res) {
   var speech =
     req.body.result &&
