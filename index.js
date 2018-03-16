@@ -85,6 +85,7 @@ restService.post("/bot", function(req,res){
       break;
     default:
       speech = "Type again";
+      break;
   } 
   return res.json({
     speech: speech,
