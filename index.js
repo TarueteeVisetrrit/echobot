@@ -84,7 +84,7 @@ restService.post("/bot", function(req,res){
   //     speech = "Type again";
   //     break;
   // } 
-  if(input =="Timetable"){
+  if(input =="scheduleEntry"){
   	speech = "Timetable case";
   }else if(input == "My progress"){
   	speech = "My progress case";
