@@ -85,10 +85,16 @@ restService.post("/bot", function(req,res){
   //     break;
   // } 
   if(input =="scheduleEntry"){
-  	speech = "Timetable case";
-  }else if(input == "My progress"){
+  	var speech1 = "Please choose your preferred day: Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday.";
+  	return res.json({
+    	speech: speech1,
+    	displayText: speech1,
+    	source: "webhook-echo-sample"
+  	});
+  	
+  }else if(input == "trainingProgressEntry"){
   	speech = "My progress case";
-  }else if("My task"){
+  }else if("trainingTaskEntry"){
   	speech = "My task case";
   }else{
   	speech = "Type again";
