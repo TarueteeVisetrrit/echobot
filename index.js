@@ -70,20 +70,29 @@ restService.get("/hello",function(req,res){
 restService.post("/bot", function(req,res){
   var input = req.body.result.parameters.DBlink;
   var speech = " ";
-  switch(input){
-    case "Timetable":
-      speech = "Timetable case";
-      break;
-    case "My progress":
-      speech = "My progress case";
-      break;
-    case "My task":
-      speech = "My task case";
-      break;
-    default:
-      speech = "Type again";
-      break;
-  } 
+  // switch(input){
+  //   case "Timetable":
+  //     speech = "Timetable case";
+  //     break;
+  //   case "My progress":
+  //     speech = "My progress case";
+  //     break;
+  //   case "My task":
+  //     speech = "My task case";
+  //     break;
+  //   default:
+  //     speech = "Type again";
+  //     break;
+  // } 
+  if(input =="Timetable"){
+  	speech = "Timetable case";
+  }else if(input == "My progress"){
+  	speech = "My progress case";
+  }else if("My task"){
+  	speech = "My task case";
+  }else{
+  	speech = "Type again";
+  }
   return res.json({
     speech: speech,
     displayText: speech,
