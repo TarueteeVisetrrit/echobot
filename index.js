@@ -68,7 +68,7 @@ restService.get("/hello",function(req,res){
 });
 
 restService.post("/bot", function(req,res){
-  var input = req.body.result.parameters.DBlink;
+  var input = req.body.result.action;
   var speech = " ";
   // switch(input){
   //   case "Timetable":
