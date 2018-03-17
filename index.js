@@ -91,7 +91,13 @@ restService.post("/bot", function(req,res){
     	displayText: speech1,
     	source: "webhook-echo-sample"
   	});
-  	
+  	var input1 = req.body.result.action;
+  	if(input1 == "scheduleResult"){
+  		var dayOfWeek = req.body.result.parameters.dayOfWeek; 
+  		speech = "Today is "+dayOfWeek; 
+  	}else{
+  		speech = "say again";
+  	}
   }else if(input == "trainingProgressEntry"){
   	speech = "My progress case";
   }else if("trainingTaskEntry"){
