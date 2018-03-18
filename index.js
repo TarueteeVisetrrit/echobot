@@ -86,10 +86,20 @@ restService.post("/bot", function(req,res){
   // } 
   if(input =="scheduleResult"){
   	var input1 = req.body.result.parameters.dayOfWeek;
-  	var speech1 = "Today is "+input1;
+  	var sql = "SELECT course_name, time_start, time_finish FROM class INNER JOIN timetable ON class.course_id = timetable.course_id WHERE timetable.course_day = ? ORDER by time_start";
+  	bd.query(sql,day,function(err,rows,fields)){
+		if (err) {
+            console.log('error: ', err);
+            throw err;
+        }
+        res.send([rows]);
+		speech2 = rows;
+	}
+
+  	//var speech1 = "Today is "+input1;
   	return res.json({
-    	speech: speech1,
-    	displayText: speech1,
+    	speech: speech2,
+    	displayText: speech2,
     	source: "webhook-echo-sample"
   	});
   	// var input1 = req.body.result.action;
