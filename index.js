@@ -71,20 +71,7 @@ restService.get("/hello",function(req,res){
 restService.post("/bot", function(req,res){
   var input = req.body.result.action;
   var speech = " ";
-  // switch(input){
-  //   case "Timetable":
-  //     speech = "Timetable case";
-  //     break;
-  //   case "My progress":
-  //     speech = "My progress case";
-  //     break;
-  //   case "My task":
-  //     speech = "My task case";
-  //     break;
-  //   default:
-  //     speech = "Type again";
-  //     break;
-  // } 
+
   if(input =="scheduleResult"){
   	var input1 = req.body.result.parameters.dayOfWeek;
   	var sql = "SELECT course_name, time_start, time_finish FROM class INNER JOIN timetable ON class.course_id = timetable.course_id WHERE timetable.course_day = ? ORDER by time_start";
@@ -105,7 +92,14 @@ restService.post("/bot", function(req,res){
   	});
   	// var input1 = req.body.result.action;
   }
-  // else if(input == "trainingProgressEntry"){
+  if(input == "trainingprogress.trainingprogress-custom"){
+  	var name = req.body.result.parameters.unit-informaiton; 
+  	var surname = req.body.result.parameters.last-name; 
+  	var course = req.body.result.parameters.Courses; 
+
+  	speech = "Your name is "+name+" "+surname+". And your course is "+course; 
+
+  }
   // 	speech = "My progress case";
   // }else if("trainingTaskEntry"){
   // 	speech = "My task case";
