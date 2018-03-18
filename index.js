@@ -75,7 +75,7 @@ restService.post("/bot", function(req,res){
   if(input =="scheduleResult"){
   	var input1 = req.body.result.parameters.dayOfWeek;
   	var sql = "SELECT course_name, time_start, time_finish FROM class INNER JOIN timetable ON class.course_id = timetable.course_id WHERE timetable.course_day = ? ORDER by time_start";
- 	var speech1 = " ";
+ 	var speech1 = "Classes on "+input1+"is now processing ";
  	connection.query(sql,input1,function(err,rows,fields) {
  		 if (err) {
             console.log('error: ', err);
