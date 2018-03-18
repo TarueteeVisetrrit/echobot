@@ -92,7 +92,7 @@ restService.post("/bot", function(req,res){
             console.log('error: ', err);
             throw err;
         }
-        res.send([rows]);
+        res.send(rows);
 		speech2 = rows;
 	}
 
