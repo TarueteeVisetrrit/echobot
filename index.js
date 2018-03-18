@@ -91,8 +91,7 @@ restService.post("/bot", function(req,res){
     	source: "webhook-echo-sample"
   	});
   	// var input1 = req.body.result.action;
-  }
-  if(input == "trainingprogress.trainingprogress-custom"){
+  }else if(input == "trainingprogress.trainingprogress-custom"){
   	var name = req.body.result.parameters.unit-informaiton; 
   	var surname = req.body.result.parameters.last-name; 
   	var course = req.body.result.parameters.Courses; 
@@ -105,7 +104,7 @@ restService.post("/bot", function(req,res){
     	source: "webhook-echo-sample"
   	});
   }
-  // 	speech = "My progress case";
+  
   // }else if("trainingTaskEntry"){
   // 	speech = "My task case";
   // }else{
