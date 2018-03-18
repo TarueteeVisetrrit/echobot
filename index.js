@@ -84,19 +84,14 @@ restService.post("/bot", function(req,res){
   //     speech = "Type again";
   //     break;
   // } 
-  if(input =="scheduleEntry"){
-  	var speech1 = "Please choose your preferred day: Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday.";
+  if(input =="scheduleResult"){
+  	var input1 = req.body.result.parameters.dayOfWeek;
+  	var speech1 = "Today is "+input1;
   	return res.json({
     	speech: speech1,
     	displayText: speech1,
     	source: "webhook-echo-sample"
   	});
-  	input = "scheduleResult";
-  	if(input == "scheduleResult"){
-  		// 	var dayOfWeek = req.body.result.parameters.dayOfWeek; 
-  		// 	speech = "Today is "+dayOfWeek;
-  		ClassScheduleOnDay();
-  	}
   	// var input1 = req.body.result.action;
   	// if(input1 == "scheduleResult"){
   	// 	var dayOfWeek = req.body.result.parameters.dayOfWeek; 
