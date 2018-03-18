@@ -97,8 +97,13 @@ restService.post("/bot", function(req,res){
   	var surname = req.body.result.parameters.last-name; 
   	var course = req.body.result.parameters.Courses; 
 
-  	speech = "Your name is "+name+" "+surname+". And your course is "+course; 
-
+  	speech = "Your name is "+name+" "+surname+". And your course is "+course;
+  	var speech1  = "my training progress"; 
+  	return res.json({
+    	speech: speech1,
+    	displayText: speech1,
+    	source: "webhook-echo-sample"
+  	});
   }
   // 	speech = "My progress case";
   // }else if("trainingTaskEntry"){
