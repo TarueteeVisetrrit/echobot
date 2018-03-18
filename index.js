@@ -94,7 +94,7 @@ restService.post("/bot", function(req,res){
             console.log('error: ', err);
             throw err;
         }
-        res.send(['Hello world', rows]);
+        speech2 = res.send(['Hello world', rows]);
     });
 	// 	if (err) {
  //            console.log('error: ', err);
