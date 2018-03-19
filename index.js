@@ -107,7 +107,9 @@ restService.post("/bot", function(req,res){
   	var name = req.body.result.parameters.unit-informaiton; 
   	var surname = req.body.result.parameters.last-name; 
   	var course = req.body.result.parameters.Courses;
-  	speech = "Your name is "+name+" "+surname+". And your course is "+course;
+  	//speech = "Your name is "+name+" "+surname+". And your course is "+course;
+  	speech = "Your name is .......... . And your course is "+course;
+
   	//speech = "My task case";
   	return res.json({
     	speech: speech,
