@@ -103,13 +103,10 @@ restService.post("/bot", function(req,res){
     	displayText: speech1,
     	source: "webhook-echo-sample"
   	});
+  }else if("TrainingTask.TrainingTask-custom"){
+  	 	speech = "My task case";
   }
-  
-  // }else if("trainingTaskEntry"){
-  // 	speech = "My task case";
-  // }else{
-  // 	speech = "Type again";
-  // }
+
   return res.json({
     speech: speech,
     displayText: speech,
