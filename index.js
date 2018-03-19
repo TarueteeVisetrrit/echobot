@@ -70,9 +70,6 @@ restService.get("/hello",function(req,res){
 
 restService.post("/bot", function(req,res){
   var input = req.body.result.action;
-  // var name = req.body.result.parameters.unit-informaiton; 
-  // var surname = req.body.result.parameters.last-name; 
-  // var course = req.body.result.parameters.Courses;
   var speech = " ";
 
   if(input =="scheduleResult"){
@@ -86,7 +83,7 @@ restService.post("/bot", function(req,res){
         }
         console.log(rows);
         speech2 = rows;
-        speech1 = " Classes on "+input1+"is now processing";
+        speech1 = " Classes on "+input1+" is now processing";
     });
   	return res.json({
     	speech: speech1,
@@ -107,7 +104,10 @@ restService.post("/bot", function(req,res){
     	source: "webhook-echo-sample"
   	});
   }else if(input == "TrainingTask.TrainingTask-custom"){
-  	speech = "My task case";
+  	var name = req.body.result.parameters.Firstname; 
+  	var surname = req.body.result.parameters.Lastname; 
+  	var course = req.body.result.parameters.Courses;
+  	speech = "My task case for "+name+" "+surname+" on course: "+course;
   	return res.json({
     	speech: speech,
     	displayText: speech,
