@@ -104,12 +104,16 @@ restService.post("/bot", function(req,res){
     	source: "webhook-echo-sample"
   	});
   }else if(input =="TrainingTask.TrainingTask-custom"){
-  	 	speech = "My task case";
-  	 	return res.json({
-    		speech: speech,
-    		displayText: speech,
-    		source: "webhook-echo-sample"
-  		});
+  	var name = req.body.result.parameters.unit-informaiton; 
+  	var surname = req.body.result.parameters.last-name; 
+  	var course = req.body.result.parameters.Courses;
+  	speech = "Your name is "+name+" "+surname+". And your course is "+course;
+  	//speech = "My task case";
+  	return res.json({
+    	speech: speech,
+    	displayText: speech,
+    	source: "webhook-echo-sample"
+  	});
   }
   input = " "; 
   
