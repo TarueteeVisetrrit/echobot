@@ -105,13 +105,14 @@ restService.post("/bot", function(req,res){
   	});
   }else if("TrainingTask.TrainingTask-custom"){
   	 	speech = "My task case";
+  	 	return res.json({
+    		speech: speech,
+    		displayText: speech,
+    		source: "webhook-echo-sample"
+  		});
   }
-
-  return res.json({
-    speech: speech,
-    displayText: speech,
-    source: "webhook-echo-sample"
-  });
+  input = " "; 
+  
 });
 
 function ClassScheduleOnDay(){
