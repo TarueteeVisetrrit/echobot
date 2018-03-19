@@ -109,9 +109,9 @@ restService.post("/bot", function(req,res){
   }else if(input =="TrainingTask.TrainingTask-custom"){
   	
   	//speech = "Your name is "+name+" "+surname+". And your course is "+course;
-  	speech = "Your name is ........... And your course is "+course;
+  	//speech = "Your name is ........... And your course is "+course;
 
-  	//speech = "My task case";
+  	speech = "My task case";
   	return res.json({
     	speech: speech,
     	displayText: speech,
