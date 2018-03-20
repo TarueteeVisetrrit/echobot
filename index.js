@@ -92,12 +92,14 @@ restService.post("/bot", function(req,res){
   	});
   	// var input1 = req.body.result.action;
   }else if(input == "trainingprogress.trainingprogress-custom"){
-  	var name = req.body.result.parameters.unit-informaiton; 
-  	var surname = req.body.result.parameters.last-name; 
-  	var course = req.body.result.parameters.Courses; 
-
-  	speech = "Your name is "+name+" "+surname+". And your course is "+course;
-  	var speech1  = "my training progress"; 
+  	var name = req.body.result.parameters.Firstname; 
+  	var surname = req.body.result.parameters.Lastname; 
+  	var course = req.body.result.parameters.Courses;
+  	var progressInput =  req.body.result.parameters.ProgressInput;
+  	if(progressInput != null ){
+  		speech = "Your name is "+name+" "+surname+". And your course is "+course;
+  		var speech1  = "my training progress"; 
+  	}
   	return res.json({
     	speech: speech1,
     	displayText: speech1,
