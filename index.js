@@ -103,7 +103,9 @@ restService.post("/bot", function(req,res){
         console.log('error: ', err);
         throw err;
       }
-      console.log(rows);
+      for (var i in rows) {
+        console.log(rows[i]);
+      }
 		  //speech = result[0].Firstname+" "+result[0].Lastname+" "+result[0].result+"on"+result[0].course_name+"with score of "+result[0].score+" test on "+result[0].date;
 		  });
 		
