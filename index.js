@@ -98,12 +98,12 @@ restService.post("/bot", function(req,res){
   	var progressInput =  req.body.result.parameters.ProgressInput;
     var sql = "SELECT `trainee`.`Firstname`,`trainee`.`Lastname` ,`class`.`course_name`, `testresult`.`score`,`testresult`.`result`,`testresult`.`date`,`testresult`.`comment` FROM (`trainee` INNER JOIN `testresult` ON `trainee`.`studentID` = `testresult`.`studentID`) INNER JOIN `class` ON `testresult`.`course_id` = `class`.`course_id` WHERE `trainee`.`Firstname` = ? AND `trainee`.`Lastname`= ? AND `class`.`course_name`=  ? ";
   	if(progressInput != null ){
-      connection.query(sql,[name,surname,course], function (err,result){
+      connection.query(sql,[name,surname,course], function (err,rows,fields){
 			if (err) {
         console.log('error: ', err);
         throw err;
       }
-      console.log(result);
+      console.log(rows);
 		  //speech = result[0].Firstname+" "+result[0].Lastname+" "+result[0].result+"on"+result[0].course_name+"with score of "+result[0].score+" test on "+result[0].date;
 		  });
 		
