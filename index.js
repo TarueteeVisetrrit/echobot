@@ -103,9 +103,10 @@ restService.post("/bot", function(req,res){
         console.log('error: ', err);
         throw err;
       }
-		  speech = result[0].Firstname+" "+result[0].Lastname+" "+result[0].result+"on"+result[0].course_name+"with score of "+result[0].score+" test on "+result[0].date;
+      console.log(result);
+		  //speech = result[0].Firstname+" "+result[0].Lastname+" "+result[0].result+"on"+result[0].course_name+"with score of "+result[0].score+" test on "+result[0].date;
 		  });
-		console.log(result);
+		
   		//speech = "Your name is "+name+" "+surname+". And your course is "+course;
   		//var speech1  = "my training progress"; 
   	}else{
