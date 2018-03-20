@@ -97,16 +97,16 @@ restService.post("/bot", function(req,res){
   	var course = req.body.result.parameters.Courses;
   	var progressInput =  req.body.result.parameters.ProgressInput;
   	if(progressInput != null ){
-  		var sql = "SELECT `trainee`.`Firstname`,`trainee`.`Lastname` ,`class`.`course_name`, `testresult`.`score`,`testresult`.`result`,`testresult`.`date`,`testresult`.`comment` FROM (`trainee` INNER JOIN `testresult` ON `trainee`.`studentID` = `testresult`.`studentID`) INNER JOIN `class` ON `testresult`.`course_id` = `class`.`course_id` WHERE `trainee`.`Firstname` = ? AND `trainee`.`Lastname`= ? AND `class`.`course_name`=  ? ";
-		connection.query(sql,[name,surname,course], function (err,result){
-		if (err) {
-            console.log('error: ', err);
-            throw err;
-        }
-		speech = result[0].Firstname+" "+result[0].Lastname+" "result[0].result+"on"+result[0].course_name+"with score of "+result[0].score+" test on "+result[0].date;
-		});
+  // 		var sql = "SELECT `trainee`.`Firstname`,`trainee`.`Lastname` ,`class`.`course_name`, `testresult`.`score`,`testresult`.`result`,`testresult`.`date`,`testresult`.`comment` FROM (`trainee` INNER JOIN `testresult` ON `trainee`.`studentID` = `testresult`.`studentID`) INNER JOIN `class` ON `testresult`.`course_id` = `class`.`course_id` WHERE `trainee`.`Firstname` = ? AND `trainee`.`Lastname`= ? AND `class`.`course_name`=  ? ";
+		// connection.query(sql,[name,surname,course], function (err,result){
+		// 	if (err) {
+  //           	console.log('error: ', err);
+  //           	throw err;
+  //       	}
+		// 	speech = result[0].Firstname+" "+result[0].Lastname+" "result[0].result+"on"+result[0].course_name+"with score of "+result[0].score+" test on "+result[0].date;
+		// });
 		console.log(result);
-  		//speech = "Your name is "+name+" "+surname+". And your course is "+course;
+  		speech = "Your name is "+name+" "+surname+". And your course is "+course;
   		//var speech1  = "my training progress"; 
   	}else{
   		speech = "Type again with this format: Progress, Myname, MyLastname, Basic combat pistol.";
