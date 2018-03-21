@@ -105,12 +105,12 @@ restService.post("/bot", function(req,res){
       	}
       	for (var i in rows) {
         	console.log(rows[i].Firstname);
-        	speech = rows[i].Firstname; 
+        	//speech = rows[i].Firstname; 
       	}
 		  //speech = result[0].Firstname+" "+result[0].Lastname+" "+result[0].result+"on"+result[0].course_name+"with score of "+result[0].score+" test on "+result[0].date;
 		});
 		connection.end();
-  		//speech = "Your name is "+name+" "+surname+". And your course is "+course;
+  		speech = "Your name is "+name+" "+surname+". And your course is "+course;
   		//var speech1  = "my training progress"; 
   	}else{
   		speech = "Type again with this format: Progress, Myname, MyLastname, Basic combat pistol.";
