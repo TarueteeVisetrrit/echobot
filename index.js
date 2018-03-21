@@ -104,13 +104,13 @@ restService.post("/bot", function(req,res){
         	throw err;
       	}
       	for (var i in rows) {
-        	console.log(rows[i].Firstname+" "+rows[i].Lastname+" "+rows[i].result+" "+rows[i].course_name+"with score of "+rows[i].score);
-        	//speech = rows[i].Firstname; 
+      		var speech1 = rows[i].Firstname+" "+rows[i].Lastname+" "+rows[i].result+" "+rows[i].course_name+" with score of "+rows[i].score+" out of 100 (pass score is 85). Test on "+rows[i].date; 
+        	console.log(speech1);
+        	speech = speech1; 
       	}
-		  //speech = result[0].Firstname+" "+result[0].Lastname+" "+result[0].result+"on"+result[0].course_name+"with score of "+result[0].score+" test on "+result[0].date;
 		});
 		connection.end();
-  		speech = "Your name is "+name+" "+surname+". And your course is "+course;
+  		//speech = "Your name is "+name+" "+surname+". And your course is "+course;
   		//var speech1  = "my training progress"; 
   	}else{
   		speech = "Type again with this format: Progress, Myname, MyLastname, Basic combat pistol.";
