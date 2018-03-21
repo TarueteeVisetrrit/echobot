@@ -131,6 +131,7 @@ restService.post("/bot", function(req,res){
             console.log('error: ', err);
             throw err;
         }
+        speech = "Your tasks on Day "+rows[0].Day_no+" are: "; 
         console.log("Your tasks on Day "+rows[0].Day_no+" are: ");
         for (var i in rows){
         	console.log(rows[i].t_description);
@@ -138,7 +139,7 @@ restService.post("/bot", function(req,res){
         
     });
     connection.end();
-  	speech = "My task case for "+name+" "+surname+" on course: "+course;
+  	//speech = "My task case for "+name+" "+surname+" on course: "+course;
   	return res.json({
     	speech: speech,
     	displayText: speech,
