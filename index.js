@@ -99,16 +99,16 @@ restService.post("/bot", function(req,res){
     var sql = "SELECT `trainee`.`Firstname`,`trainee`.`Lastname` ,`class`.`course_name`, `testresult`.`score`,`testresult`.`result`,`testresult`.`date`,`testresult`.`comment` FROM (`trainee` INNER JOIN `testresult` ON `trainee`.`studentID` = `testresult`.`studentID`) INNER JOIN `class` ON `testresult`.`course_id` = `class`.`course_id` WHERE `trainee`.`Firstname` = ? AND `trainee`.`Lastname`= ? AND `class`.`course_name`=  ? ";
   	if(progressInput != null ){
       connection.query(sql,[name,surname,course], function (err,rows,fields){
-			if (err) {
-        console.log('error: ', err);
-        throw err;
-      }
-      for (var i in rows) {
-        console.log("rows[i]");
-      }
+      	if (err) {
+      		console.log('error: ', err);
+        	throw err;
+      	}
+      	for (var i in rows) {
+        	console.log("rows[i]");
+      	}
 		  //speech = result[0].Firstname+" "+result[0].Lastname+" "+result[0].result+"on"+result[0].course_name+"with score of "+result[0].score+" test on "+result[0].date;
-		  });
-		
+		});
+		connection.end();
   		//speech = "Your name is "+name+" "+surname+". And your course is "+course;
   		//var speech1  = "my training progress"; 
   	}else{
@@ -123,6 +123,15 @@ restService.post("/bot", function(req,res){
   	var name = req.body.result.parameters.Firstname; 
   	var surname = req.body.result.parameters.Lastname; 
   	var course = req.body.result.parameters.Courses;
+    var sql1 = "SELECT `trainee`.`studentID`,`enroll`.`P_id`,`enroll`.`Day_no`,`course_name`,`t_description` FROM ((`enroll` INNER JOIN `trainee` ON `enroll`.`studentID`= `trainee`.`StudentID` ) INNER JOIN `class` ON `enroll`.`course_id` = `class`.`course_id`) INNER JOIN (`tasktoday` INNER JOIN `curriculum` ON `tasktoday`.`t_id`=`curriculum`.`t_id`) ON `enroll`.`P_id` = `tasktoday`.`P_id` AND `enroll`.`Day_no`= `tasktoday`.`Day_no` AND `class`.`Level`= `tasktoday`.`Level`WHERE `trainee`.`FirstName`=? AND `trainee`.`LastName`=? AND `class`.`course_name`=?";
+    connection.query(sql1,[name,surname,course],function(err,rows,fields) {
+     if (err) {
+            console.log('error: ', err);
+            throw err;
+        }
+        console.log(rows);
+    });
+    connection.end();
   	speech = "My task case for "+name+" "+surname+" on course: "+course;
   	return res.json({
     	speech: speech,
