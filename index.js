@@ -80,9 +80,10 @@ restService.post("/bot", function(req,res){
  		 if (err) {
             console.log('error: ', err);
             throw err;
+        }for (var i in rows){
+        	console.log(rows[i].course_name+" start from "+rows[i].time_start+" to "+rows[i].time_finish);
         }
-        console.log(rows);
-        speech2 = rows;
+        //speech2 = rows;
         speech1 = " Classes on "+input1+" is now processing";
     });
   	return res.json({
