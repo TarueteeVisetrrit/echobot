@@ -164,7 +164,7 @@ function fetchProgress([name,surname,course],callback){
       		var speech1 = rows[i].Firstname+" "+rows[i].Lastname+" "+rows[i].result+" "+rows[i].course_name+" with score of "+rows[i].score+" out of 100 (pass score is 85). Test on "+rows[i].date; 
         	console.log(speech1);
         	speech = speech1;
-        	return callback(speech) 
+        	return callback(speech); 
       	}
 		});
   	connection.end();
