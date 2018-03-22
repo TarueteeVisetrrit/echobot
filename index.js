@@ -99,18 +99,21 @@ restService.post("/bot", function(req,res){
   	var progressInput =  req.body.result.parameters.ProgressInput;
     var sql = "SELECT `trainee`.`Firstname`,`trainee`.`Lastname` ,`class`.`course_name`, `testresult`.`score`,`testresult`.`result`,`testresult`.`date`,`testresult`.`comment` FROM (`trainee` INNER JOIN `testresult` ON `trainee`.`studentID` = `testresult`.`studentID`) INNER JOIN `class` ON `testresult`.`course_id` = `class`.`course_id` WHERE `trainee`.`Firstname` = ? AND `trainee`.`Lastname`= ? AND `class`.`course_name`=  ? ";
   	if(progressInput != null ){
-      connection.query(sql,[name,surname,course], function (err,rows,fields){
-      	if (err) {
-      		console.log('error: ', err);
-        	throw err;
-      	}
-      	for (var i in rows) {
-      		var speech1 = rows[i].Firstname+" "+rows[i].Lastname+" "+rows[i].result+" "+rows[i].course_name+" with score of "+rows[i].score+" out of 100 (pass score is 85). Test on "+rows[i].date; 
-        	console.log(speech1);
-        	speech = speech1; 
-      	}
-		});
-		connection.end();
+  		fetchProgress([name,surname,course],function(result){
+  			speech = result; 
+  		})
+  //     connection.query(sql,[name,surname,course], function (err,rows,fields){
+  //     	if (err) {
+  //     		console.log('error: ', err);
+  //       	throw err;
+  //     	}
+  //     	for (var i in rows) {
+  //     		var speech1 = rows[i].Firstname+" "+rows[i].Lastname+" "+rows[i].result+" "+rows[i].course_name+" with score of "+rows[i].score+" out of 100 (pass score is 85). Test on "+rows[i].date; 
+  //       	console.log(speech1);
+  //       	speech = speech1; 
+  //     	}
+		// });
+		// connection.end();
   		//speech = "Your name is "+name+" "+surname+". And your course is "+course;
   		//var speech1  = "my training progress"; 
   	}else{
@@ -149,6 +152,23 @@ restService.post("/bot", function(req,res){
   input = " "; 
   
 });
+
+function fetchProgress([name,surname,course],callback){
+	var sql = "SELECT `trainee`.`Firstname`,`trainee`.`Lastname` ,`class`.`course_name`, `testresult`.`score`,`testresult`.`result`,`testresult`.`date`,`testresult`.`comment` FROM (`trainee` INNER JOIN `testresult` ON `trainee`.`studentID` = `testresult`.`studentID`) INNER JOIN `class` ON `testresult`.`course_id` = `class`.`course_id` WHERE `trainee`.`Firstname` = ? AND `trainee`.`Lastname`= ? AND `class`.`course_name`=  ? ";
+  	connection.query(sql,[name,surname,course], function (err,rows,fields){
+      	if (err) {
+      		console.log('error: ', err);
+        	throw err;
+      	}
+      	for (var i in rows) {
+      		var speech1 = rows[i].Firstname+" "+rows[i].Lastname+" "+rows[i].result+" "+rows[i].course_name+" with score of "+rows[i].score+" out of 100 (pass score is 85). Test on "+rows[i].date; 
+        	console.log(speech1);
+        	speech = speech1;
+        	return callback(speech) 
+      	}
+		});
+  	connection.end();
+}
 
 function ClassScheduleOnDay(){
 	var dayOfWeek = req.body.result.parameters.dayOfWeek; 
