@@ -74,21 +74,24 @@ restService.post("/bot", function(req,res){
 
   if(input =="scheduleResult"){
   	var input1 = req.body.result.parameters.dayOfWeek;
-  	var sql = "SELECT course_name, time_start, time_finish FROM class INNER JOIN timetable ON class.course_id = timetable.course_id WHERE timetable.course_day = ? ORDER by time_start";
- 	var speech1 = "Classes on "+input1+"is now processing ";
- 	connection.query(sql,input1,function(err,rows,fields) {
- 		 if (err) {
-            console.log('error: ', err);
-            throw err;
-        }for (var i in rows){
-        	console.log(rows[i].course_name+" start from "+rows[i].time_start+" to "+rows[i].time_finish);
-        }
-        //speech2 = rows;
-        speech1 = " Classes on "+input1+" is now processing";
-    });
+  	fetchClassSchedule(input1,function(result){
+  		speech = result;
+  	})
+
+  // 	var sql = "SELECT course_name, time_start, time_finish FROM class INNER JOIN timetable ON class.course_id = timetable.course_id WHERE timetable.course_day = ? ORDER by time_start";
+ 	// connection.query(sql,input1,function(err,rows,fields) {
+ 	// 	 if (err) {
+  //           console.log('error: ', err);
+  //           throw err;
+  //       }for (var i in rows){
+  //       	console.log(rows[i].course_name+" start from "+rows[i].time_start+" to "+rows[i].time_finish);
+  //       }
+  //       //speech2 = rows;
+  //       speech1 = " Classes on "+input1+" is now processing";
+  //   });
   	return res.json({
-    	speech: speech1,
-    	displayText: speech1,
+    	speech: speech,
+    	displayText: speech,
     	source: "webhook-echo-sample"
   	});
   	// var input1 = req.body.result.action;
@@ -128,20 +131,23 @@ restService.post("/bot", function(req,res){
   	var name = req.body.result.parameters.Firstname; 
   	var surname = req.body.result.parameters.Lastname; 
   	var course = req.body.result.parameters.Courses;
-    var sql1 = "SELECT `trainee`.`studentID`,`enroll`.`P_id`,`enroll`.`Day_no`,`course_name`,`t_description` FROM ((`enroll` INNER JOIN `trainee` ON `enroll`.`studentID`= `trainee`.`StudentID` ) INNER JOIN `class` ON `enroll`.`course_id` = `class`.`course_id`) INNER JOIN (`tasktoday` INNER JOIN `curriculum` ON `tasktoday`.`t_id`=`curriculum`.`t_id`) ON `enroll`.`P_id` = `tasktoday`.`P_id` AND `enroll`.`Day_no`= `tasktoday`.`Day_no` AND `class`.`Level`= `tasktoday`.`Level`WHERE `trainee`.`FirstName`=? AND `trainee`.`LastName`=? AND `class`.`course_name`=?";
-    connection.query(sql1,[name,surname,course],function(err,rows,fields) {
-     if (err) {
-            console.log('error: ', err);
-            throw err;
-        }
-        speech = "Your tasks on Day "+rows[0].Day_no+" are: "; 
-        console.log("Your tasks on Day "+rows[0].Day_no+" are: ");
-        for (var i in rows){
-        	console.log(rows[i].t_description);
-        }
+  	fetchTask([name,surname,course],function(result){
+  		speech = result;
+  	})
+    // var sql1 = "SELECT `trainee`.`studentID`,`enroll`.`P_id`,`enroll`.`Day_no`,`course_name`,`t_description` FROM ((`enroll` INNER JOIN `trainee` ON `enroll`.`studentID`= `trainee`.`StudentID` ) INNER JOIN `class` ON `enroll`.`course_id` = `class`.`course_id`) INNER JOIN (`tasktoday` INNER JOIN `curriculum` ON `tasktoday`.`t_id`=`curriculum`.`t_id`) ON `enroll`.`P_id` = `tasktoday`.`P_id` AND `enroll`.`Day_no`= `tasktoday`.`Day_no` AND `class`.`Level`= `tasktoday`.`Level`WHERE `trainee`.`FirstName`=? AND `trainee`.`LastName`=? AND `class`.`course_name`=?";
+    // connection.query(sql1,[name,surname,course],function(err,rows,fields) {
+    //  if (err) {
+    //         console.log('error: ', err);
+    //         throw err;
+    //     }
+    //     speech = "Your tasks on Day "+rows[0].Day_no+" are: "; 
+    //     console.log("Your tasks on Day "+rows[0].Day_no+" are: ");
+    //     for (var i in rows){
+    //     	console.log(rows[i].t_description);
+    //     }
         
-    });
-    connection.end();
+    // });
+    // connection.end();
   	//speech = "My task case for "+name+" "+surname+" on course: "+course;
   	return res.json({
     	speech: speech,
@@ -152,6 +158,24 @@ restService.post("/bot", function(req,res){
   input = " "; 
   
 });
+
+function fetchTask([name,surname,course],callback){
+	var sql1 = "SELECT `trainee`.`studentID`,`enroll`.`P_id`,`enroll`.`Day_no`,`course_name`,`t_description` FROM ((`enroll` INNER JOIN `trainee` ON `enroll`.`studentID`= `trainee`.`StudentID` ) INNER JOIN `class` ON `enroll`.`course_id` = `class`.`course_id`) INNER JOIN (`tasktoday` INNER JOIN `curriculum` ON `tasktoday`.`t_id`=`curriculum`.`t_id`) ON `enroll`.`P_id` = `tasktoday`.`P_id` AND `enroll`.`Day_no`= `tasktoday`.`Day_no` AND `class`.`Level`= `tasktoday`.`Level`WHERE `trainee`.`FirstName`=? AND `trainee`.`LastName`=? AND `class`.`course_name`=?";
+    connection.query(sql1,[name,surname,course],function(err,rows,fields) {
+     if (err) {
+            console.log('error: ', err);
+            throw err;
+        }
+        //speech = "Your tasks on Day "+rows[0].Day_no+" are: "; 
+        console.log("Your tasks on Day "+rows[0].Day_no+" are: ");
+        for (var i in rows){
+        	console.log(rows[i].t_description);
+        	return callback(rows[i].t_description);
+        }
+        
+    });
+    connection.end();
+}
 
 function fetchProgress([name,surname,course],callback){
 	var sql = "SELECT `trainee`.`Firstname`,`trainee`.`Lastname` ,`class`.`course_name`, `testresult`.`score`,`testresult`.`result`,`testresult`.`date`,`testresult`.`comment` FROM (`trainee` INNER JOIN `testresult` ON `trainee`.`studentID` = `testresult`.`studentID`) INNER JOIN `class` ON `testresult`.`course_id` = `class`.`course_id` WHERE `trainee`.`Firstname` = ? AND `trainee`.`Lastname`= ? AND `class`.`course_name`=  ? ";
@@ -170,14 +194,20 @@ function fetchProgress([name,surname,course],callback){
   	connection.end();
 }
 
-function ClassScheduleOnDay(){
-	var dayOfWeek = req.body.result.parameters.dayOfWeek; 
-  	speech = "Today is "+dayOfWeek; 
-  	return res.json({
-    	speech: speech,
-    	displayText: speech,
-    	source: "webhook-echo-sample"
- 	});
+function fetchClassSchedule(input1,callback){
+	var sql = "SELECT course_name, time_start, time_finish FROM class INNER JOIN timetable ON class.course_id = timetable.course_id WHERE timetable.course_day = ? ORDER by time_start";
+ 	connection.query(sql,input1,function(err,rows,fields) {
+ 		 if (err) {
+            console.log('error: ', err);
+            throw err;
+        }for (var i in rows){
+        	var speech1 = rows[i].course_name+" start from "+rows[i].time_start+" to "+rows[i].time_finish;
+        	console.log(speech1);
+        	return callback(speech1);
+        }
+    });
+    connection.end();
+
 }
 restService.post("/echo", function(req, res) {
   var speech =
