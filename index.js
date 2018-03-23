@@ -74,11 +74,9 @@ restService.post("/bot", function(req,res){
 
   if(input =="scheduleResult"){
   	var input1 = req.body.result.parameters.dayOfWeek;
-  	speech = "hay";
-  	speech1 = "yo";
-  	// fetchClassSchedule(input1,function(result){
-  	// 	speech = result;
-  	// })
+  	fetchClassSchedule(input1,function(result){
+  		speech = result;
+  	})
 
   // 	var sql = "SELECT course_name, time_start, time_finish FROM class INNER JOIN timetable ON class.course_id = timetable.course_id WHERE timetable.course_day = ? ORDER by time_start";
  	// connection.query(sql,input1,function(err,rows,fields) {
@@ -94,11 +92,6 @@ restService.post("/bot", function(req,res){
   	return res.json({
     	speech: speech,
     	displayText: speech,
-    	source: "webhook-echo-sample"
-  	});
-  	return res.json({
-    	speech: speech1,
-    	displayText: speech1,
     	source: "webhook-echo-sample"
   	});
 
