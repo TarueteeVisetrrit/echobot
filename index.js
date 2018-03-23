@@ -74,9 +74,11 @@ restService.post("/bot", function(req,res){
 
   if(input =="scheduleResult"){
   	var input1 = req.body.result.parameters.dayOfWeek;
-  	fetchClassSchedule(input1,function(result){
-  		speech = result;
-  	})
+  	speech = "hay";
+  	speech1 = "yo";
+  	// fetchClassSchedule(input1,function(result){
+  	// 	speech = result;
+  	// })
 
   // 	var sql = "SELECT course_name, time_start, time_finish FROM class INNER JOIN timetable ON class.course_id = timetable.course_id WHERE timetable.course_day = ? ORDER by time_start";
  	// connection.query(sql,input1,function(err,rows,fields) {
@@ -94,6 +96,12 @@ restService.post("/bot", function(req,res){
     	displayText: speech,
     	source: "webhook-echo-sample"
   	});
+  	return res.json({
+    	speech: speech1,
+    	displayText: speech1,
+    	source: "webhook-echo-sample"
+  	});
+
   	// var input1 = req.body.result.action;
   }else if(input == "trainingprogress.trainingprogress-custom"){
   	var name = req.body.result.parameters.Firstname; 
@@ -187,7 +195,6 @@ function fetchProgress([name,surname,course],callback){
       	for (var i in rows) {
       		var speech1 = rows[i].Firstname+" "+rows[i].Lastname+" "+rows[i].result+" "+rows[i].course_name+" with score of "+rows[i].score+" out of 100 (pass score is 85). Test on "+rows[i].date; 
         	console.log(speech1);
-        	//speech = speech1;
         	return callback(speech1); 
       	}
 		});
