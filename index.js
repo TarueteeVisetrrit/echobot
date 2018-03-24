@@ -157,6 +157,15 @@ restService.post("/bot", function(req,res){
     	displayText: speech,
     	source: "webhook-echo-sample"
   	});
+  }else if(input == "Packageoptions.Packageoptions-custom.Packageoptions-private-price"){
+
+  	speech = "Private price process";
+
+  	return res.json({
+    	speech: speech,
+    	displayText: speech,
+    	source: "webhook-echo-sample"
+  	});
   }
   input = " "; 
   
