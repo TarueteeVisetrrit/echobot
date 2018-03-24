@@ -63,14 +63,12 @@ restService.get("/hello",function(req,res){
 
 restService.post("/bot", function(req,res){
   var input = req.body.result.action;
-  var speech = ' ';
+  var speech = ' yeah';
 
   if(input =="scheduleResult"){
   	var input1 = req.body.result.parameters.dayOfWeek;
   	fetchClassSchedule(input1,function(rows){
-  		setTimeout(function(){
-  		console.log("set time out ...");
-  	},5000);
+  		
 
   		speech = rows;
   		console.log(speech);
