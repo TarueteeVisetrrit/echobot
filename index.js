@@ -86,7 +86,7 @@ restService.post("/bot", function(req,res){
   //   });
   	return res.json({
     	speech: speech,
-    	displayText: speech,
+    	displayText: "",
     	source: "webhook-echo-sample"
   	});
 
