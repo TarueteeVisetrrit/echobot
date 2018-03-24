@@ -63,7 +63,7 @@ restService.get("/hello",function(req,res){
 
 restService.post("/bot", function(req,res){
   var input = req.body.result.action;
-  var speech = ' yeah';
+  var speech = '';
 
   if(input =="scheduleResult"){
   	var input1 = req.body.result.parameters.dayOfWeek;
@@ -71,7 +71,7 @@ restService.post("/bot", function(req,res){
   		
 
   		speech = rows;
-  		console.log(speech);
+  		console.log("result" +speech);
 
   		//speech = "Hahaha"; 
   	})
@@ -202,8 +202,8 @@ function fetchClassSchedule(input1,callback){
             console.log('error: ', err);
             throw err;
         }for (var i in rows){
-        	speech1 = speech1 +"\n" +rows[i].course_name+" start from "+rows[i].time_start+" to "+rows[i].time_finish;
-        	
+        	//speech1 = speech1 +"\n" +rows[i].course_name+" start from "+rows[i].time_start+" to "+rows[i].time_finish;
+        	speech1 = "wow";
         	//return callback(speech1);
         }
         console.log(speech1);
