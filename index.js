@@ -160,10 +160,21 @@ restService.post("/bot", function(req,res){
   }else if(input == "Packageoptions.Packageoptions-custom.Packageoptions-private-price"){
   	var numTraining = req.body.result.parameters.number;
   	var courseType  = req.body.result.parameters.Courses;
+  	var totalPrice; 
   	if(courseType == "lived fire"){
-  		speech = "You wanna train "+numTraining+" private classes for lived fire";
-  	}else{
-  		speech = "You wanna train "+numTraining+" private classes for simulated fire";
+  		if(numTraining < 3){
+  			totalPrice = numTraining;
+  		}else{
+  			totalPrice = numTraining* 2000 - (numTraining-1)*500;
+  		}
+  		speech = "You wanna train "+numTraining+" private classes for lived fire, so the price is at "+totalPrice;
+  	}else if (input = "simulated training"){
+  		if(numTraining < 3){
+  			totalPrice = numTraining;
+  		}else{
+  			totalPrice = numTraining* 1000 - (numTraining-1)*500;
+  		}
+  		speech = "You wanna train "+numTraining+" private classes for lived fire, so the price is at "+totalPrice;
   	}
   	//speech = "Private price process";
 
