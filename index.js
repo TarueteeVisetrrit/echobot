@@ -69,7 +69,7 @@ restService.post("/bot", function(req,res){
   	var input1 = req.body.result.parameters.dayOfWeek;
   	fetchClassSchedule(input1,function(rows){
   		
-		sleep(5000);
+		setTimeout(5000);
   		speech = rows;
   		console.log("result" +speech);
 
