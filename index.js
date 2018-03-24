@@ -167,17 +167,30 @@ restService.post("/bot", function(req,res){
   		}else{
   			totalPrice = numTraining* 2000 - (numTraining-1)*500;
   		}
-  		speech = "You wanna train "+numTraining+" private classes for lived fire, so the price is at "+totalPrice;
+  		speech = "You wanna train "+numTraining+" private classes for lived fire, so the price is at "+totalPrice+" Baht.";
   	}else if (input = "simulated training"){
   		if(numTraining < 3){
   			totalPrice = numTraining;
   		}else{
   			totalPrice = numTraining* 1000 - (numTraining-1)*500;
   		}
-  		speech = "You wanna train "+numTraining+" private classes for lived fire, so the price is at "+totalPrice;
+  		speech = "You wanna train "+numTraining+" private classes for lived fire, so the price is at "+totalPrice+" Baht.";
   	}
   	//speech = "Private price process";
 
+  	return res.json({
+    	speech: speech,
+    	displayText: speech,
+    	source: "webhook-echo-sample"
+  	});
+  }else if(input == "Packageoptions.Packageoptions-custom.Packageoptions-dropin-price"){
+  	var numTraining = req.body.result.parameters.number;
+  	var courseType  = req.body.result.parameters.Courses;
+  	var memType = req.body.result.parameters.memberType;
+  	var totalPrice;
+  	if(memType != null){
+  		speech = "drop in procesing"; 
+  	}
   	return res.json({
     	speech: speech,
     	displayText: speech,
