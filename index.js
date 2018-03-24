@@ -67,13 +67,13 @@ restService.post("/bot", function(req,res){
 
   if(input =="scheduleResult"){
   	var input1 = req.body.result.parameters.dayOfWeek;
-  	var test =fetchClassSchedule(input1,function(rows){
+  	fetchClassSchedule(input1,function(rows){
   		speech = rows;
   		console.log(speech);
 
   		//speech = "Hahaha"; 
   	})
-  	console.log("TEST "+ test.speech1);
+  	
 
   // 	var sql = "SELECT course_name, time_start, time_finish FROM class INNER JOIN timetable ON class.course_id = timetable.course_id WHERE timetable.course_day = ? ORDER by time_start";
  	// connection.query(sql,input1,function(err,rows,fields) {
@@ -199,8 +199,8 @@ function fetchClassSchedule(input1,callback){
             console.log('error: ', err);
             throw err;
         }for (var i in rows){
-        	speech1 = speech1 +"\n" +rows[i].course_name+" start from "+rows[i].time_start+" to "+rows[i].time_finish;
-        	
+        	//speech1 = speech1 +"\n" +rows[i].course_name+" start from "+rows[i].time_start+" to "+rows[i].time_finish;
+        	speech1 = "WOW";
         	//return callback(speech1);
         }
         console.log(speech1);
