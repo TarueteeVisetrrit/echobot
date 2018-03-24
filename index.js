@@ -158,8 +158,14 @@ restService.post("/bot", function(req,res){
     	source: "webhook-echo-sample"
   	});
   }else if(input == "Packageoptions.Packageoptions-custom.Packageoptions-private-price"){
-
-  	speech = "Private price process";
+  	var numTraining = req.body.result.parameters.number;
+  	var courseType  = req.body.result.parameters.Courses;
+  	if(courseType == "lived fire"){
+  		speech = "You wanna train "+numTraining+" private classes for lived fire";
+  	}else{
+  		speech = "You wanna train "+numTraining+" private classes for simulated fire";
+  	}
+  	//speech = "Private price process";
 
   	return res.json({
     	speech: speech,
