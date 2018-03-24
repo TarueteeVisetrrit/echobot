@@ -17,13 +17,6 @@ var db_config = {
 
 var connection;
 
-//connect to db Code doesn't works
-// db.connect((err) =>{
-//   if(err){
-//     throw err;
-//   }
-//   console.log('Mysql connected.....');
-// }); 
 function handleDisconnect() {
     console.log('1. connecting to db:');
     connection = mysql.createConnection(db_config); // Recreate the connection, since
@@ -70,7 +63,7 @@ restService.get("/hello",function(req,res){
 
 restService.post("/bot", function(req,res){
   var input = req.body.result.action;
-  var speech = " ";
+  var speech = ' ';
 
   if(input =="scheduleResult"){
   	var input1 = req.body.result.parameters.dayOfWeek;
@@ -204,7 +197,7 @@ function fetchClassSchedule(input1,callback){
             console.log('error: ', err);
             throw err;
         }for (var i in rows){
-        	var speech1 = rows[i].course_name+" start from "+rows[i].time_start+" to "+rows[i].time_finish;
+        	speech1 = rows[i].course_name+" start from "+rows[i].time_start+" to "+rows[i].time_finish;
         	console.log(speech1);
         	//return callback(speech1);
         }
