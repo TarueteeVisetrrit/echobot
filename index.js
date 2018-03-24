@@ -69,7 +69,7 @@ restService.post("/bot", function(req,res){
   	var input1 = req.body.result.parameters.dayOfWeek;
   	fetchClassSchedule(input1,function(rows){
   		
-
+		sleep(5000);
   		speech = rows;
   		console.log("result" +speech);
 
@@ -202,7 +202,7 @@ function fetchClassSchedule(input1,callback){
             console.log('error: ', err);
             throw err;
         }for (var i in rows){
-        	//speech1 = speech1 +"\n" +rows[i].course_name+" start from "+rows[i].time_start+" to "+rows[i].time_finish;
+        	speech1 = speech1 +"\n" +rows[i].course_name+" start from "+rows[i].time_start+" to "+rows[i].time_finish;
         	speech1 = "wow";
         	//return callback(speech1);
         }
