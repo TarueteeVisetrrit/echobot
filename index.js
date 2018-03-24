@@ -70,6 +70,7 @@ restService.post("/bot", function(req,res){
   	fetchClassSchedule(input1,function(rows){
   		speech = rows;
   		console.log("result print");
+  		return speech;
   		//speech = "Hahaha"; 
   	})
 
@@ -86,7 +87,7 @@ restService.post("/bot", function(req,res){
   //   });
   	return res.json({
     	speech: speech,
-    	displayText: "",
+    	displayText: speech,
     	source: "webhook-echo-sample"
   	});
 
