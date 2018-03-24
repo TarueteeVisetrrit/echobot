@@ -67,12 +67,13 @@ restService.post("/bot", function(req,res){
 
   if(input =="scheduleResult"){
   	var input1 = req.body.result.parameters.dayOfWeek;
-  	fetchClassSchedule(input1,function(rows){
+  	var test =fetchClassSchedule(input1,function(rows){
   		speech = rows;
   		console.log(speech);
 
   		//speech = "Hahaha"; 
   	})
+  	console.log("TEST "+ test.speech1);
 
   // 	var sql = "SELECT course_name, time_start, time_finish FROM class INNER JOIN timetable ON class.course_id = timetable.course_id WHERE timetable.course_day = ? ORDER by time_start";
  	// connection.query(sql,input1,function(err,rows,fields) {
