@@ -168,7 +168,7 @@ restService.post("/bot", function(req,res){
   			totalPrice = numTraining* 2000 - (numTraining-1)*500;
   		}
   		speech = "You wanna train "+numTraining+" private classes for lived fire, so the price is at "+totalPrice+" Baht.";
-  	}else if (input = "simulated training"){
+  	}else if (courseType = "simulated training"){
   		if(numTraining < 3){
   			totalPrice = numTraining;
   		}else{
@@ -183,34 +183,16 @@ restService.post("/bot", function(req,res){
     	displayText: speech,
     	source: "webhook-echo-sample"
   	});
-  }else if(input == "Packageoptions.Packageoptions-custom.Packageoptions-dropin-price"){
-  	var numTraining = req.body.result.parameters.number;
-  	var courseType  = req.body.result.parameters.Courses;
-  	var memType = req.body.result.parameters.memberType;
-  	var totalPrice;
-  	if(memType != null){
-  		if(courseType == "lived fire"){
-  			if(numTraining < 3){
-  				totalPrice = numTraining;
-  			}else{
-  				totalPrice = numTraining* 3500 - (numTraining-1)*500;
-  		}
-  		speech = "So "+numTraining+" classes drop-in for lived fire, so the price is at "+totalPrice+" Baht.";
-  	}else if (input = "simulated training"){
-  		if(numTraining < 3){
-  			totalPrice = numTraining;
-  		}else{
-  			totalPrice = numTraining* 500 - (numTraining-1)*250;
-  		}
-  		speech = "So "+numTraining+" classes drop-in for lived fire, so the price is at "+totalPrice+" Baht.";
-  	}
-  		
-  	}
+  }else if(input == "simmulatecourseschedule.simmulatecourseschedule-custom"){
+  	var courseInput = req.body.result.parameters.Courses; 
+  	speech = "Schedule of "+courseInput; 
+
   	return res.json({
     	speech: speech,
     	displayText: speech,
     	source: "webhook-echo-sample"
   	});
+
   }
   input = " "; 
   
