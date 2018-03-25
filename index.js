@@ -250,6 +250,23 @@ function fetchClassSchedule(input1,callback){
     return callback(speech1);
     connection.end();
 
+} 
+
+function fetchSpecifyTimetable(courseInput,callback){
+	var speech1 = " "; 
+	var sql =  "SELECT timetable.`course_day` ,course_name, time_start, time_finish FROM class INNER JOIN timetable ON class.course_id = timetable.course_id WHERE class.`course_name` = ? ORDER by  timetable.`course_day_num`";
+	connection.query(sql,courseInput,function(err,rows,fields){
+		if (err) {
+            console.log('error: ', err);
+            throw err;
+        }for (var i in rows){
+        	speech1 = speech1 +"\n" +rows[i].course_day+" "+rows[i].course_name+" start from "+rows[i].time_start+" to "+rows[i].time_finish;
+        	//speech1 = "wow";
+        }
+        console.log(speech1);
+    });
+    return callback(speech1);
+    connection.end();
 }
 restService.post("/echo", function(req, res) {
   var speech =
