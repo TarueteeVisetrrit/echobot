@@ -165,14 +165,14 @@ restService.post("/bot", function(req,res){
   		if(numTraining < 3){
   			totalPrice = numTraining;
   		}else{
-  			totalPrice = numTraining* 2000 - (numTraining-1)*500;
+  			totalPrice = numTraining* 2000 - ((numTraining/2)-1)*500;
   		}
   		speech = "You wanna train "+numTraining+" private classes for lived fire, so the price is at "+totalPrice+" Baht.";
   	}else if (courseType == "simulated training"){
   		if(numTraining < 3){
   			totalPrice = numTraining;
   		}else{
-  			totalPrice = numTraining* 1000 - (numTraining-1)*500;
+  			totalPrice = numTraining* 1000 - ((numTraining/2)-1)*500;
   		}
   		speech = "You wanna train "+numTraining+" private classes for simulated training, so the price is at "+totalPrice+" Baht.";
   	}
