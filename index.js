@@ -85,12 +85,13 @@ restService.post("/bot", function(req,res){
             throw err;
         }for (var i in rows){
         	console.log(rows[i].course_name+" start from "+rows[i].time_start+" to "+rows[i].time_finish);
-        }    	speech: speech,
-
+        }    	
         //speech2 = rows;
         speech = " Classes on "+input1+" is now processing";
     });
+
   	return res.json({
+  		speech: speech,
     	displayText: speech,
     	source: "webhook-echo-sample"
   	});
@@ -219,6 +220,7 @@ function fetchTask([name,surname,course],callback){
 }
 
 function fetchProgress([name,surname,course],callback){
+	var speech1 = " ";
 	var sql = "SELECT `trainee`.`Firstname`,`trainee`.`Lastname` ,`class`.`course_name`, `testresult`.`score`,`testresult`.`result`,`testresult`.`date`,`testresult`.`comment` FROM (`trainee` INNER JOIN `testresult` ON `trainee`.`studentID` = `testresult`.`studentID`) INNER JOIN `class` ON `testresult`.`course_id` = `class`.`course_id` WHERE `trainee`.`Firstname` = ? AND `trainee`.`Lastname`= ? AND `class`.`course_name`=  ? ";
   	connection.query(sql,[name,surname,course], function (err,rows,fields){
       	if (err) {
@@ -227,10 +229,12 @@ function fetchProgress([name,surname,course],callback){
       	}
       	for (var i in rows) {
       		var speech1 = rows[i].Firstname+" "+rows[i].Lastname+" "+rows[i].result+" "+rows[i].course_name+" with score of "+rows[i].score+" out of 100 (pass score is 85). Test on "+rows[i].date+"\n"+"Comment: "+rows[i].comment; 
-        	console.log(speech1);
+        	
         	return callback(speech1); 
       	}
+      	console.log(speech1);
 		});
+  	return callback(speech1); 
   	connection.end();
 }
 
