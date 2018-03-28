@@ -87,7 +87,7 @@ restService.post("/bot", function(req,res){
         	console.log(rows[i].course_name+" start from "+rows[i].time_start+" to "+rows[i].time_finish);
         }
         //speech2 = rows;
-        speech1 = " Classes on "+input1+" is now processing";
+        speech = " Classes on "+input1+" is now processing";
     });
   	return res.json({
     	speech: speech,
