@@ -183,6 +183,9 @@ restService.post("/bot", function(req,res){
   	});
   }else if(input == "simmulatecourseschedule.simmulatecourseschedule-custom"){
   	var courseInput = req.body.result.parameters.Courses; 
+  	fetchSpecifyTimetable(courseInput,function(result){
+  			speech = result; 
+  	})
   	speech = "Schedule of "+courseInput; 
 
   	return res.json({
