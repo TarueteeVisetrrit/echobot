@@ -224,7 +224,7 @@ function fetchProgress([name,surname,course],callback){
         	throw err;
       	}
       	for (var i in rows) {
-      		var speech1 = rows[i].Firstname+" "+rows[i].Lastname+" "+rows[i].result+" "+rows[i].course_name+" with score of "+rows[i].score+" out of 100 (pass score is 85). Test on "+rows[i].date; 
+      		var speech1 = rows[i].Firstname+" "+rows[i].Lastname+" "+rows[i].result+" "+rows[i].course_name+" with score of "+rows[i].score+" out of 100 (pass score is 85). Test on "+rows[i].date+"\n"+"Comment: "+rows[i].comment; 
         	console.log(speech1);
         	return callback(speech1); 
       	}
