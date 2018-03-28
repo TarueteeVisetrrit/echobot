@@ -67,30 +67,28 @@ restService.post("/bot", function(req,res){
 
   if(input =="scheduleResult"){
   	var input1 = req.body.result.parameters.dayOfWeek;
-  	fetchClassSchedule(input1,function(rows){
+  // 	fetchClassSchedule(input1,function(rows){
   		
-		setTimeout(function(){
-			console.log("blablabla");
-		},5000);
-  		speech = rows;
-  		console.log("result" +speech);
+		// setTimeout(function(){
+		// 	console.log("blablabla");
+		// },5000);
+  // 		speech = rows;
+  // 		console.log("result" +speech);
 
-  		//speech = "Hahaha"; 
-  	})
+  // 		//speech = "Hahaha"; 
+  // 	})
 
-  	  	
-
-  // 	var sql = "SELECT course_name, time_start, time_finish FROM class INNER JOIN timetable ON class.course_id = timetable.course_id WHERE timetable.course_day = ? ORDER by time_start";
- 	// connection.query(sql,input1,function(err,rows,fields) {
- 	// 	 if (err) {
-  //           console.log('error: ', err);
-  //           throw err;
-  //       }for (var i in rows){
-  //       	console.log(rows[i].course_name+" start from "+rows[i].time_start+" to "+rows[i].time_finish);
-  //       }
-  //       //speech2 = rows;
-  //       speech1 = " Classes on "+input1+" is now processing";
-  //   });
+  	var sql = "SELECT course_name, time_start, time_finish FROM class INNER JOIN timetable ON class.course_id = timetable.course_id WHERE timetable.course_day = ? ORDER by time_start";
+ 	connection.query(sql,input1,function(err,rows,fields) {
+ 		 if (err) {
+            console.log('error: ', err);
+            throw err;
+        }for (var i in rows){
+        	console.log(rows[i].course_name+" start from "+rows[i].time_start+" to "+rows[i].time_finish);
+        }
+        //speech2 = rows;
+        speech1 = " Classes on "+input1+" is now processing";
+    });
   	return res.json({
     	speech: speech,
     	displayText: speech,
