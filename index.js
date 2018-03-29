@@ -218,20 +218,28 @@ restService.post("/bot", function(req,res){
 
   	setTimeout(function(){
   		console.log("blablabla");
-  	},10000);
-  	
-  	var sql2 = "UPDATE enroll INNER JOIN trainee ON enroll.`studentID` = trainee.`StudentID` INNER JOIN class ON enroll.`course_id`= class.`course_id` SET enroll.`Day_no` = ?  WHERE trainee.`FirstName` = ? AND trainee.`LastName`= ? AND class.`course_name`= ?";
-  	connection.query(sql2,[day,name,surname,course],function(err,rows,fields){
-  		if (err) {
-            console.log('error: ', err);
-            throw err;
-        }
-        var speech1 = " ";
-        for(var i in rows){
-        	speech1 = "New: "+rows[i].FirstName+" "+rows[i].LastName+". Day no: "+rows[i].Day_no;
-        }
-        console.log(speech1);
+  		var sql2 = "UPDATE enroll INNER JOIN trainee ON enroll.`studentID` = trainee.`StudentID` INNER JOIN class ON enroll.`course_id`= class.`course_id` SET enroll.`Day_no` = ?  WHERE trainee.`FirstName` = ? AND trainee.`LastName`= ? AND class.`course_name`= ?";
+  		connection.query(sql2,[day,name,surname,course],function(err,rows,fields){
+  			if (err) {
+            	console.log('error: ', err);
+           		throw err;
+        	}
+        console.log("Updated");
   	});
+  	},10000);
+
+  	// var sql2 = "UPDATE enroll INNER JOIN trainee ON enroll.`studentID` = trainee.`StudentID` INNER JOIN class ON enroll.`course_id`= class.`course_id` SET enroll.`Day_no` = ?  WHERE trainee.`FirstName` = ? AND trainee.`LastName`= ? AND class.`course_name`= ?";
+  	// connection.query(sql2,[day,name,surname,course],function(err,rows,fields){
+  	// 	if (err) {
+   //          console.log('error: ', err);
+   //          throw err;
+   //      }
+   //      var speech1 = " ";
+   //      for(var i in rows){
+   //      	speech1 = "New: "+rows[i].FirstName+" "+rows[i].LastName+". Day no: "+rows[i].Day_no;
+   //      }
+   //      console.log(speech1);
+  	// });
 
 
 
