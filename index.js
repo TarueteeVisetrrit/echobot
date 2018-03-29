@@ -195,6 +195,18 @@ restService.post("/bot", function(req,res){
     	source: "webhook-echo-sample"
   	});
 
+  }else if(input == "Check-in.Check-in-custom"){
+  	var name = req.body.result.parameters.Firstname; 
+  	var surname = req.body.result.parameters.Lastname; 
+  	var course = req.body.result.parameters.Courses; 
+
+  	speech = "Welcome "+name+" "+surname+" to "+course;
+  	
+  	return res.json({
+    	speech: speech,
+    	displayText: speech,
+    	source: "webhook-echo-sample"
+  	});
   }
   input = " "; 
   
