@@ -199,9 +199,39 @@ restService.post("/bot", function(req,res){
   	var name = req.body.result.parameters.Firstname; 
   	var surname = req.body.result.parameters.Lastname; 
   	var course = req.body.result.parameters.Courses; 
+  	var day;
+
+  	var sql1 = "SELECT trainee.`FirstName`, trainee.`LastName`,class.`course_name`, enroll.`Day_no` FROM (enroll INNER JOIN class ON enroll.`course_id` = class.`course_id`) INNER JOIN trainee ON enroll.`studentID` = trainee.`StudentID` WHERE trainee.`FirstName` = ? AND trainee.`LastName`= ? AND class.`course_name`= ?";
+  	connection.query(sql1,[name,surname,course],function(err,rows,fields){
+  		if (err) {
+            console.log('error: ', err);
+            throw err;
+        }
+        var speech1 = " ";
+        for(var i in rows){
+        	speech1 = "Old: "+rows[i].FirstName+" "+rows[i].LastName+". Day no: "+rows[i].Day_no;
+        	day = rows[i].Day_no + 1;
+        }
+        console.log(speech1);
+        console.log("New day no.: "+day);
+  	});
+  	var sql2 = "UPDATE enroll INNER JOIN trainee ON enroll.`studentID` = trainee.`StudentID` INNER JOIN class ON enroll.`course_id`= class.`course_id` SET enroll.`Day_no` = ?  WHERE trainee.`FirstName` = ? AND trainee.`LastName`= ? AND class.`course_name`= ?";
+  	connection.query(sql2,[day,name,surname,course],function(err,rows,fields){
+  		if (err) {
+            console.log('error: ', err);
+            throw err;
+        }
+        var speech1 = " ";
+        for(var i in rows){
+        	speech1 = "New: "+rows[i].FirstName+" "+rows[i].LastName+". Day no: "+rows[i].Day_no;
+        }
+        console.log(speech1);
+  	});
+
+
 
   	speech = "Welcome "+name+" "+surname+" to "+course;
-  	
+
   	return res.json({
     	speech: speech,
     	displayText: speech,
@@ -286,6 +316,8 @@ function fetchSpecifyTimetable(courseInput,callback){
     return callback(speech1);
     connection.end();
 }
+
+
 restService.post("/echo", function(req, res) {
   var speech =
     req.body.result &&
