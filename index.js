@@ -85,7 +85,7 @@ restService.post("/bot", function(req,res){
             console.log('error: ', err);
             throw err;
         }for (var i in rows){
-        	speechOutput = speechOutput+" "+rows[i].course_name+" start from "+rows[i].time_start+" to "+rows[i].time_finish; 
+        	speechOutput = speechOutput+"\n"+rows[i].course_name+" start from "+rows[i].time_start+" to "+rows[i].time_finish; 
         	
         }  
         console.log(speechOutput);  	
@@ -93,6 +93,7 @@ restService.post("/bot", function(req,res){
         setTimeout(function(){
         	console.log("Fetching");
         	speech = speechOutput;
+        	console.log("Result: "+speech);
         	console.log("Done");
         },10000);
     });
