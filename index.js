@@ -7,7 +7,7 @@ const restService = express();
 
 var mysql = require('mysql');
 
-//create connection Code doesn't works
+//create connection 
 var db_config = {
  host     : 'us-cdbr-iron-east-05.cleardb.net',
  user     : 'bc72622898452a',
@@ -66,6 +66,7 @@ restService.post("/bot", function(req,res){
   var speech = '';
 
   if(input =="scheduleResult"){
+  	var speechOutput = " ";  
   	var input1 = req.body.result.parameters.dayOfWeek;
   // 	fetchClassSchedule(input1,function(rows){
   		
@@ -84,10 +85,16 @@ restService.post("/bot", function(req,res){
             console.log('error: ', err);
             throw err;
         }for (var i in rows){
-        	console.log(rows[i].course_name+" start from "+rows[i].time_start+" to "+rows[i].time_finish);
-        }    	
-        //speech2 = rows;
-        speech = " Classes on "+input1+" is now processing";
+        	speechOutput = speechOutput+" "+rows[i].course_name+" start from "+rows[i].time_start+" to "+rows[i].time_finish; 
+        	
+        }  
+        console.log(speechOutput);  	
+ 
+        setTimeout(function(){
+        	console.log("Fetching");
+        	speech = speechOutput;
+        	console.log("Done");
+        },10000);
     });
 
   	return res.json({
@@ -228,21 +235,6 @@ restService.post("/bot", function(req,res){
   	});
   	},10000);
 
-  	// var sql2 = "UPDATE enroll INNER JOIN trainee ON enroll.`studentID` = trainee.`StudentID` INNER JOIN class ON enroll.`course_id`= class.`course_id` SET enroll.`Day_no` = ?  WHERE trainee.`FirstName` = ? AND trainee.`LastName`= ? AND class.`course_name`= ?";
-  	// connection.query(sql2,[day,name,surname,course],function(err,rows,fields){
-  	// 	if (err) {
-   //          console.log('error: ', err);
-   //          throw err;
-   //      }
-   //      var speech1 = " ";
-   //      for(var i in rows){
-   //      	speech1 = "New: "+rows[i].FirstName+" "+rows[i].LastName+". Day no: "+rows[i].Day_no;
-   //      }
-   //      console.log(speech1);
-  	// });
-
-
-
   	speech = "Welcome "+name+" "+surname+" to "+course;
 
   	return res.json({
@@ -251,6 +243,7 @@ restService.post("/bot", function(req,res){
     	source: "webhook-echo-sample"
   	});
   }
+  
   input = " "; 
   
 });
