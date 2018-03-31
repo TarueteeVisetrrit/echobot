@@ -168,30 +168,30 @@ restService.post("/bot", function(req,res){
   	var numTraining = req.body.result.parameters.number;
   	var courseType  = req.body.result.parameters.Courses;
   	var totalPrice;
-  	var totalPrice1;
-  	var totalPrice2; 
+  	// var totalPrice1;
+  	// var totalPrice2; 
   	if(courseType == "lived fire"){
   		if(numTraining < 3){
   			totalPrice = numTraining;
-  			totalPrice1 = totalPrice*0.8; 
-  			totalPrice2 = totalPrice*0.6;
+  			// totalPrice1 = totalPrice*0.8; 
+  			// totalPrice2 = totalPrice*0.6;
   		}else{
   			totalPrice = numTraining* 2000 - ((numTraining/2)-1)*500;
-  			totalPrice1 = totalPrice*0.8; 
-  			totalPrice2 = totalPrice*0.6;
+  			// totalPrice1 = totalPrice*0.8; 
+  			// totalPrice2 = totalPrice*0.6;
   		}
-  		speech = " "+numTraining+" private classes for lived fire, so the price is at "+totalPrice+" Baht.If you bring 2-3 firends, the price is at "+totalPrice1" Baht PER person.If you bring more than 4 friends, the price is at "+totalPrice2;
+  		speech = " "+numTraining+" private classes for lived fire, so the price is at "+totalPrice+" Baht.";
   	}else if (courseType == "simulated training"){
   		if(numTraining < 3){
   			totalPrice = numTraining;
-  			totalPrice1 = totalPrice*0.8; 
-  			totalPrice2 = totalPrice*0.6;
+  			// totalPrice1 = totalPrice*0.8; 
+  			// totalPrice2 = totalPrice*0.6;
   		}else{
   			totalPrice = numTraining* 1000 - ((numTraining/2)-1)*500;
-  			totalPrice1 = totalPrice*0.8; 
-  			totalPrice2 = totalPrice*0.6;
+  			// totalPrice1 = totalPrice*0.8; 
+  			// totalPrice2 = totalPrice*0.6;
   		}
-  		speech = "You wanna train "+numTraining+" private classes for simulated training, so the price is at "+totalPrice+" Baht.If you bring 2-3 firends, the price is at "+totalPrice1" Baht PER person.If you bring more than 4 friends, the price is at "+totalPrice2;
+  		speech = "You wanna train "+numTraining+" private classes for simulated training, so the price is at "+totalPrice+" Baht.";
   	}
   	//speech = "Private price process";
 
@@ -254,17 +254,7 @@ restService.post("/bot", function(req,res){
     	source: "webhook-echo-sample"
   	});
   }
-  // else if(input == "Accuracyanalysis.Accuracyanalysis-custom"){
-  // 	var position = req.body.result.parameters.number; 
-
-  // 	speech = "num is "+position;
-
-  // 	return res.json({
-  //   	speech: speech,
-  //   	displayText: speech,
-  //   	source: "webhook-echo-sample"
-  // 	});
-  //}
+  
   
   input = " "; 
   
