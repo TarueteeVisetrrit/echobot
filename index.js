@@ -253,16 +253,18 @@ restService.post("/bot", function(req,res){
     	displayText: speech,
     	source: "webhook-echo-sample"
   	});
-  }else if(input == "Accuracyanalysis.Accuracyanalysis-custom"){
-  	var position = req.body.result.parameters.number; 
-
-  	speech = "num is "+position;
-  	return res.json({
-    	speech: speech,
-    	displayText: speech,
-    	source: "webhook-echo-sample"
-  	});
   }
+  // else if(input == "Accuracyanalysis.Accuracyanalysis-custom"){
+  // 	var position = req.body.result.parameters.number; 
+
+  // 	speech = "num is "+position;
+
+  // 	return res.json({
+  //   	speech: speech,
+  //   	displayText: speech,
+  //   	source: "webhook-echo-sample"
+  // 	});
+  //}
   
   input = " "; 
   
