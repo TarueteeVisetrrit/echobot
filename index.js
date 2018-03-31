@@ -256,7 +256,7 @@ restService.post("/bot", function(req,res){
   }else if(input == "Accuracyanalysis.Accuracyanalysis-custom"){
   	var position = req.body.result.parameters.number; 
 
-  	speech = "num is "+number;
+  	speech = "num is "+position;
   	return res.json({
     	speech: speech,
     	displayText: speech,
