@@ -180,7 +180,7 @@ restService.post("/bot", function(req,res){
   			totalPrice1 = totalPrice*0.8; 
   			totalPrice2 = totalPrice*0.6;
   		}
-  		speech = " "+numTraining+" private classes for lived fire, so the price is at "+totalPrice+" Baht."+ "\n"+" If you bring 2-3 firends, the price is at "+totalPrice1" Baht PER person."+"\n"+"If you bring more than 4 friends, the price is at "+totalPrice2;
+  		speech = " "+numTraining+" private classes for lived fire, so the price is at "+totalPrice+" Baht.If you bring 2-3 firends, the price is at "+totalPrice1" Baht PER person.If you bring more than 4 friends, the price is at "+totalPrice2;
   	}else if (courseType == "simulated training"){
   		if(numTraining < 3){
   			totalPrice = numTraining;
@@ -191,7 +191,7 @@ restService.post("/bot", function(req,res){
   			totalPrice1 = totalPrice*0.8; 
   			totalPrice2 = totalPrice*0.6;
   		}
-  		speech = "You wanna train "+numTraining+" private classes for simulated training, so the price is at "+totalPrice+" Baht."+ "\n"+"If you bring 2-3 firends, the price is at "+totalPrice1" Baht PER person."+"\n"+ "If you bring more than 4 friends, the price is at "+totalPrice2;
+  		speech = "You wanna train "+numTraining+" private classes for simulated training, so the price is at "+totalPrice+" Baht.If you bring 2-3 firends, the price is at "+totalPrice1" Baht PER person.If you bring more than 4 friends, the price is at "+totalPrice2;
   	}
   	//speech = "Private price process";
 
