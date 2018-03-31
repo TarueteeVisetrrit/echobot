@@ -255,8 +255,27 @@ restService.post("/bot", function(req,res){
   	});
   }else if(input == "Accuracyanalysis.Accuracyanalysis-custom"){
   	var position = req.body.result.parameters.number; 
+  	if(position >=1 && position < 2){
+  		speech = "You are anticipating the recoil."; 
+  	}else if(position >=2 && position < 3){
+  		speech = "Your thumb are squeezed too much or put too deep trigger finger."; 
+  	}else if(position >=3 && position < 4){
+  		speech = "Your grip is tighten when pulling the trigger."; 
+  	}else if(position >=5 && position < 7){
+  		speech = "Your wrist is broke down, pushing your gun foward, or droping the head when pulling the trigger.";
+  	}else if(position >=7 && position < 8){
+  		speech = "Your finger is tighten when pulling the trigger, or you are jerking/ slapping the trigger.";
+  	}else if(position >=8 && position < 10){
+  		speech = "Your trigger finger is not deep enough.";
+  	}else if(position >=10 && position < 11){
+  		speech = "You pushed to anticipating the recoil, not follow through.";
+  	}else if(position >=11 && position < 12){
+  		speech = "Your wrist is broke up.";
+  	}else{
+  		speech = "Your number must be integer from 1 to 12";
+  	}
 
-  	speech = "num is "+position;
+  	//speech = "num is "+position;
 
    	return res.json({
     	speech: speech,
