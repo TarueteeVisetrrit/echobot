@@ -317,12 +317,10 @@ function fetchProgress([name,surname,course],callback){
         	throw err;
       	}
       	for (var i in rows) {
-      		var speech1 = rows[i].Firstname+" "+rows[i].Lastname+" "+rows[i].result+" "+rows[i].course_name+" with score of "+rows[i].score+" out of 100 (pass score is 85). Test on "+rows[i].date+"\n"+"Comment: "+rows[i].comment; 
-        	
-        	return callback(speech1); 
+      		speech1 = rows[i].Firstname+" "+rows[i].Lastname+" "+rows[i].result+" "+rows[i].course_name+" with score of "+rows[i].score+" out of 100 (pass score is 85). Test on "+rows[i].date+"\n"+"Comment: "+rows[i].comment+"\n"+"Course that you may interest: "+rows[i].Recommended_course; 	 
       	}
       	console.log(speech1);
-		});
+	});
   	return callback(speech1); 
   	connection.end();
 }
