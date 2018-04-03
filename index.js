@@ -68,35 +68,35 @@ restService.post("/bot", function(req,res){
   if(input =="scheduleResult"){
   	var speechOutput = " ";  
   	var input1 = req.body.result.parameters.dayOfWeek;
-  // 	fetchClassSchedule(input1,function(rows){
+  	fetchClassSchedule(input1,function(rows){
   		
-		// setTimeout(function(){
-		// 	console.log("blablabla");
-		// },5000);
-  // 		speech = rows;
-  // 		console.log("result" +speech);
+		setTimeout(function(){
+			console.log("blablabla");
+		},5000);
+  		speech = rows;
+  		console.log("result" +speech);
 
-  // 		//speech = "Hahaha"; 
-  // 	})
+  		//speech = "Hahaha"; 
+  	})
 
-  	var sql = "SELECT course_name, time_start, time_finish FROM class INNER JOIN timetable ON class.course_id = timetable.course_id WHERE timetable.course_day = ? ORDER by time_start";
- 	connection.query(sql,input1,function(err,rows,fields) {
- 		 if (err) {
-            console.log('error: ', err);
-            throw err;
-        }for (var i in rows){
-        	speechOutput = speechOutput+"\n"+rows[i].course_name+" start from "+rows[i].time_start+" to "+rows[i].time_finish; 
+  // 	var sql = "SELECT course_name, time_start, time_finish FROM class INNER JOIN timetable ON class.course_id = timetable.course_id WHERE timetable.course_day = ? ORDER by time_start";
+ 	// connection.query(sql,input1,function(err,rows,fields) {
+ 	// 	 if (err) {
+  //           console.log('error: ', err);
+  //           throw err;
+  //       }for (var i in rows){
+  //       	speechOutput = speechOutput+"\n"+rows[i].course_name+" start from "+rows[i].time_start+" to "+rows[i].time_finish; 
         	
-        }  
-        console.log(speechOutput);  	
+  //       }  
+  //       console.log(speechOutput);  	
  
-        setTimeout(function(){
-        	console.log("Fetching");
-        	speech = speechOutput;
-        	console.log("Result: "+speech);
-        	console.log("Done");
-        },10000);
-    });
+  //       setTimeout(function(){
+  //       	console.log("Fetching");
+  //       	speech = speechOutput;
+  //       	console.log("Result: "+speech);
+  //       	console.log("Done");
+  //       },10000);
+  //   });
 
   	return res.json({
   		speech: speech,
