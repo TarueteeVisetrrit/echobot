@@ -99,6 +99,7 @@ restService.post("/bot", function(req,res){
   //       	console.log("Done");
   //       },10000);
   //   });
+  	console.log(speech)
 
   	return res.json({
   		speech: speech,
