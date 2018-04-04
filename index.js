@@ -316,17 +316,20 @@ restService.post("/bot", function(req,res){
 
 function fetchTask([name,surname,course],callback){
 	var speech1 = " ";
+	var speech2 = " ";
+	var speech3 = " ";
 	var sql1 = "SELECT `trainee`.`studentID`,`enroll`.`P_id`,`enroll`.`Day_no`,`course_name`,`t_description` FROM ((`enroll` INNER JOIN `trainee` ON `enroll`.`studentID`= `trainee`.`StudentID` ) INNER JOIN `class` ON `enroll`.`course_id` = `class`.`course_id`) INNER JOIN (`tasktoday` INNER JOIN `curriculum` ON `tasktoday`.`t_id`=`curriculum`.`t_id`) ON `enroll`.`P_id` = `tasktoday`.`P_id` AND `enroll`.`Day_no`= `tasktoday`.`Day_no` AND `class`.`Level`= `tasktoday`.`Level`WHERE `trainee`.`FirstName`=? AND `trainee`.`LastName`=? AND `class`.`course_name`=?";
     connection.query(sql1,[name,surname,course],function(err,rows,fields) {
      if (err) {
             console.log('error: ', err);
             throw err;
         }
-        //speech = "Your tasks on Day "+rows[0].Day_no+" are: "; 
-        console.log("Your tasks on Day "+rows[0].Day_no+" are: ");
+        speech2 = "Your tasks on Day "+rows[0].Day_no+" are: "; 
+        console.log(speech2);
         for (var i in rows){
         	speech1 = speech1+"\n"+rows[i].t_description;	
         }
+        speech3 = speech2+"\n"+speech1;
         console.log(speech1);
         console.log(speech1);
         callback(speech1);
