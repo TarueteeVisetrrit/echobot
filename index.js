@@ -72,9 +72,11 @@ restService.post("/bot", function(req,res){
   		
 		setTimeout(function(){
 			console.log("blablabla");
+			speech = rows;
+  			console.log("result" +speech);
 		},10000);
-  		speech = rows;
-  		console.log("result" +speech);
+  		// speech = rows;
+  		// console.log("result" +speech);
 
   		//speech = "Hahaha"; 
   	})
