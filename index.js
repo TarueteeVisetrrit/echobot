@@ -68,7 +68,7 @@ restService.post("/bot", function(req,res){
   if(input =="scheduleResult"){
   	var speechOutput = " ";  
   	var input1 = req.body.result.parameters.dayOfWeek;
-  	speech = fetchClassSchedule(input1,function(rows){
+    fetchClassSchedule(input1,function(rows){
   		
 			setTimeout(function(){
 				console.log("blablabla");
@@ -342,10 +342,10 @@ function fetchClassSchedule(input1,callback){
         	
         }
         console.log(speech1);
-
+        callback("speech eoeo");
+        return;
     });
  		connection.end();
- 		return callback("speech eoeo");
 
  	},5000);
 
