@@ -334,7 +334,7 @@ function fetchProgress([name,surname,course],callback){
 function fetchClassSchedule(input1,callback){
 	var speech1 = " "; 
 	var sql = "SELECT course_name, time_start, time_finish FROM class INNER JOIN timetable ON class.course_id = timetable.course_id WHERE timetable.course_day = ? ORDER by time_start";
- 	setTimeout(function(){
+ 	// setTimeout(function(){
  		console.log("Fetching");
  		connection.query(sql,input1,function(err,rows,fields) {
  		 if (err) {
@@ -351,7 +351,7 @@ function fetchClassSchedule(input1,callback){
     });
  		connection.end();
 
- 	},5000);
+ 	// },5000);
 
  	// connection.query(sql,input1,function(err,rows,fields) {
  	// 	 if (err) {
