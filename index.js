@@ -74,11 +74,14 @@ restService.post("/bot", function(req,res){
 				console.log("blablabla");
 				speech = rows;
 	  			console.log("result: " +speech);
-	  			return res.json({
+	  			console.log(res)
+	  			res.json({
 	  				speech: speech,
     				displayText: speech,
     				source: "webhook-echo-sample"
   				});
+	  			console.log(res)
+	  			return res
 			},10000);
   		// speech = rows;
   		// console.log("result" +speech);
