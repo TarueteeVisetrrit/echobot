@@ -345,7 +345,7 @@ function fetchClassSchedule(input1,callback){
 
     });
  		connection.end();
- 		return callback(speech1);
+ 		return callback("speech eiei");
 
  	},5000);
 
