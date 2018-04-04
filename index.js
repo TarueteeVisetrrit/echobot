@@ -323,11 +323,7 @@ function fetchProgress([name,surname,course],callback){
       	}
       	console.log(speech1);
 	});
-  	return callback(null,{
-  		speech: speech1,
-    	displayText: speech1,
-    	source: "webhook-echo-sample"
-  	}); 
+  	return callback(speech1); 
   	connection.end();
 }
 
@@ -349,7 +345,11 @@ function fetchClassSchedule(input1,callback){
 
     });
  		connection.end();
- 		return callback("speech eiei");
+ 		return callback({
+  		speech: speech1,
+    	displayText: speech1,
+    	source: "webhook-echo-sample"
+  	});
 
  	},5000);
 
