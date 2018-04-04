@@ -74,6 +74,11 @@ restService.post("/bot", function(req,res){
 				console.log("blablabla");
 				speech = rows;
 	  			console.log("result: " +speech);
+	  			return res.json({
+	  				speech: speech,
+    				displayText: speech,
+    				source: "webhook-echo-sample"
+  				});
 			},10000);
   		// speech = rows;
   		// console.log("result" +speech);
@@ -99,13 +104,9 @@ restService.post("/bot", function(req,res){
   //       	console.log("Done");
   //       },10000);
   //   });
-  	console.log(speech)
 
-  	return res.json({
-  		speech: speech,
-    	displayText: speech,
-    	source: "webhook-echo-sample"
-  	});
+
+  	
 
   	// var input1 = req.body.result.action;
   }else if(input == "trainingprogress.trainingprogress-custom"){
