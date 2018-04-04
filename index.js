@@ -323,7 +323,11 @@ function fetchProgress([name,surname,course],callback){
       	}
       	console.log(speech1);
 	});
-  	return callback(speech1); 
+  	return callback(null,{
+  		speech: speech1,
+    	displayText: speech1,
+    	source: "webhook-echo-sample"
+  	}); 
   	connection.end();
 }
 
@@ -338,7 +342,7 @@ function fetchClassSchedule(input1,callback){
             throw err;
         }for (var i in rows){
         	speech1 = speech1 +"\n" +rows[i].course_name+" start from "+rows[i].time_start+" to "+rows[i].time_finish;
-        	speech1 = "wow";
+        	//speech1 = "wow";
         	
         }
         console.log(speech1);
