@@ -345,11 +345,7 @@ function fetchClassSchedule(input1,callback){
 
     });
  		connection.end();
- 		return callback({
-  		speech: speech1,
-    	displayText: speech1,
-    	source: "webhook-echo-sample"
-  	});
+ 		return callback("speech eoeo");
 
  	},5000);
 
