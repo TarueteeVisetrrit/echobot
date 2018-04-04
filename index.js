@@ -79,8 +79,7 @@ restService.post("/bot", function(req,res){
     				displayText: speech,
     				source: "webhook-echo-sample"
   				})
-  				console.log(res)
-  				.then(res => return res)
+  				.then(res => {return res})
 	  			// console.log(res)
 	  			// return res
 			},10000);
