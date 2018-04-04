@@ -73,7 +73,7 @@ restService.post("/bot", function(req,res){
 		setTimeout(function(){
 			console.log("blablabla");
 			speech = rows;
-  			console.log("result" +speech);
+  			console.log("result: " +speech);
 		},10000);
   		// speech = rows;
   		// console.log("result" +speech);
@@ -358,7 +358,7 @@ function fetchClassSchedule(input1,callback){
   //       console.log(speech1);
 
   //   });
-    return callback(null,speech1);
+    return callback(speech1);
     connection.end();
 
 } 
