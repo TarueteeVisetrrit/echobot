@@ -331,8 +331,8 @@ function fetchTask([name,surname,course],callback){
         }
         speech3 = speech2+"\n"+speech1;
         console.log(speech1);
-        console.log(speech1);
-        callback(speech1);
+        console.log(speech3);
+        callback(speech3);
         return;
     });
     connection.end();
