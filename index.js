@@ -70,19 +70,18 @@ restService.post("/bot", function(req,res){
   	var input1 = req.body.result.parameters.dayOfWeek;
     fetchClassSchedule(input1,function(rows){
   		
-			setTimeout(function(){
+			// setTimeout(function(){
 				console.log("blablabla");
 				speech = rows;
 	  			console.log("result: " +speech);
-	  			res.json({
+	  			return res.json({
 	  				speech: speech,
     				displayText: speech,
     				source: "webhook-echo-sample"
   				})
-  				.then(res => {return res})
 	  			// console.log(res)
 	  			// return res
-			},10000);
+			// },10000);
   		// speech = rows;
   		// console.log("result" +speech);
 
