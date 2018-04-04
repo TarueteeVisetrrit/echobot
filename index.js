@@ -344,6 +344,7 @@ function fetchClassSchedule(input1,callback){
         console.log(speech1);
 
     });
+ 		connection.end();
  		return callback(speech1);
 
  	},5000);
@@ -361,7 +362,7 @@ function fetchClassSchedule(input1,callback){
 
   //   });
     
-    connection.end();
+    //connection.end();
 
 } 
 
