@@ -72,7 +72,7 @@ restService.post("/bot", function(req,res){
   		
 		setTimeout(function(){
 			console.log("blablabla");
-		},5000);
+		},10000);
   		speech = rows;
   		console.log("result" +speech);
 
@@ -328,18 +328,34 @@ function fetchProgress([name,surname,course],callback){
 function fetchClassSchedule(input1,callback){
 	var speech1 = " "; 
 	var sql = "SELECT course_name, time_start, time_finish FROM class INNER JOIN timetable ON class.course_id = timetable.course_id WHERE timetable.course_day = ? ORDER by time_start";
- 	connection.query(sql,input1,function(err,rows,fields) {
+ 	setTimeout(function(){
+ 		console.log("Fetching");
+ 		connection.query(sql,input1,function(err,rows,fields) {
  		 if (err) {
             console.log('error: ', err);
             throw err;
         }for (var i in rows){
         	speech1 = speech1 +"\n" +rows[i].course_name+" start from "+rows[i].time_start+" to "+rows[i].time_finish;
         	speech1 = "wow";
-        	//return callback(speech1);
+        	
         }
         console.log(speech1);
-
     });
+
+ 	},5000);
+
+ 	// connection.query(sql,input1,function(err,rows,fields) {
+ 	// 	 if (err) {
+  //           console.log('error: ', err);
+  //           throw err;
+  //       }for (var i in rows){
+  //       	speech1 = speech1 +"\n" +rows[i].course_name+" start from "+rows[i].time_start+" to "+rows[i].time_finish;
+  //       	speech1 = "wow";
+  //       	//return callback(speech1);
+  //       }
+  //       console.log(speech1);
+
+  //   });
     return callback(null,speech1);
     connection.end();
 
