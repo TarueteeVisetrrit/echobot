@@ -342,6 +342,7 @@ function fetchClassSchedule(input1,callback){
         	
         }
         console.log(speech1);
+        return callback(speech1);
     });
 
  	},5000);
@@ -358,7 +359,7 @@ function fetchClassSchedule(input1,callback){
   //       console.log(speech1);
 
   //   });
-    return callback(speech1);
+    
     connection.end();
 
 } 
