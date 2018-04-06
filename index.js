@@ -407,7 +407,7 @@ function fetchSpecifyTimetable(courseInput,callback){
             console.log('error: ', err);
             throw err;
         }
-        speech2 = " "+rows[i].course_name+" timetable: ";
+        speech2 = " "+rows[0].course_name+" timetable: ";
         for (var i in rows){
         	speech1 = speech1 +"\n" +rows[i].course_day+" start from "+rows[i].time_start+" to "+rows[i].time_finish;
         	//speech1 = "wow";
