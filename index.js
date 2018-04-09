@@ -347,7 +347,7 @@ function fetchProgress([name,surname,course],callback){
         	throw err;
       	}
       	for (var i in rows) {
-      		speech1 = "Your progress on "+rows[i].course_name+"Training day "+rows[i].Day_no+" out of "+rows[i].P_id+"\n"+"Your test result: "+rows[i].result+" with score of "+rows[i].score+" out of 100 (pass score is 85). Test on "+rows[i].date+"\n"+"Comment: "+rows[i].comment+"\n"+"Course that you may interest: "+rows[i].Recommended_course; 	 
+      		speech1 = "Your progress on "+rows[i].course_name+" Training day "+rows[i].Day_no+" out of "+rows[i].P_id+"\n"+"Your test result: "+rows[i].result+" with score of "+rows[i].score+" out of 100 (pass score is 85). Test on "+rows[i].date+"\n"+"Comment: "+rows[i].comment+"\n"+"Course that you may interest: "+rows[i].Recommended_course; 	 
       	}
       	console.log(speech1);
       	console.log(speech1);
