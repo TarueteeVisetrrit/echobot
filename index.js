@@ -340,14 +340,14 @@ function fetchTask([name,surname,course],callback){
 
 function fetchProgress([name,surname,course],callback){
 	var speech1 = " ";
-	var sql = "SELECT `trainee`.`Firstname`,`trainee`.`Lastname` ,`class`.`course_name`, `testresult`.`score`,`testresult`.`result`,`testresult`.`date`,`testresult`.`comment`,`testresult`.`Recommended_course` FROM (`trainee` INNER JOIN `testresult` ON `trainee`.`studentID` = `testresult`.`studentID`) INNER JOIN `class` ON `testresult`.`course_id` = `class`.`course_id` WHERE `trainee`.`Firstname` = ? AND `trainee`.`Lastname`= ? AND `class`.`course_name`=  ? ";
+	var sql = "SELECT `trainee`.`Firstname`,`trainee`.`Lastname` ,`class`.`course_name`,`enroll`.`Day_no`,`testresult`.`P_id`, `testresult`.`score`,`testresult`.`result`,`testresult`.`date`,`testresult`.`comment`,`testresult`.`Recommended_course` FROM ((`trainee` INNER JOIN `testresult` ON `trainee`.`studentID` = `testresult`.`studentID`) INNER JOIN `class` ON `testresult`.`course_id` = `class`.`course_id` ) INNER JOIN `enroll` ON `trainee`.`StudentID` = `enroll`.`studentID` WHERE `trainee`.`Firstname` = ? AND `trainee`.`Lastname`= ? AND `class`.`course_name`=  ?";
   	connection.query(sql,[name,surname,course], function (err,rows,fields){
       	if (err) {
       		console.log('error: ', err);
         	throw err;
       	}
       	for (var i in rows) {
-      		speech1 = rows[i].Firstname+" "+rows[i].Lastname+" "+rows[i].result+" "+rows[i].course_name+" with score of "+rows[i].score+" out of 100 (pass score is 85). Test on "+rows[i].date+"\n"+"Comment: "+rows[i].comment+"\n"+"Course that you may interest: "+rows[i].Recommended_course; 	 
+      		speech1 = "Your progress on "+rows[i].course_name+"Training day "+rows[i].Day_no+" out of "+rows[i].P_id+"\n"+"Your test result: "+rows[i].result+" with score of "+rows[i].score+" out of 100 (pass score is 85). Test on "+rows[i].date+"\n"+"Comment: "+rows[i].comment+"\n"+"Course that you may interest: "+rows[i].Recommended_course; 	 
       	}
       	console.log(speech1);
       	console.log(speech1);
